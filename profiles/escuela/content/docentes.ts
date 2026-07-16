@@ -11,6 +11,7 @@ import eduardoRomero from "../assets/docentes/EDUARDO_ROMERO.webp";
 import carlosTrujillo from "../assets/docentes/CARLOS_TRUJILLO.webp";
 import luisRios from "../assets/docentes/LUIS_RIOS.webp";
 import santiagoLopez from "../assets/docentes/SANTIAGO_LOPEZ.webp";
+import julissaBazan from "../assets/docentes/JULISSA_BAZAN.webp";
 
 const docentesBase = [
   {
@@ -99,7 +100,7 @@ const docentesBase = [
       "Negociación",
       "Gobernanza territorial",
     ],
-    foto: null,
+    foto: julissaBazan,
   },
 ];
 

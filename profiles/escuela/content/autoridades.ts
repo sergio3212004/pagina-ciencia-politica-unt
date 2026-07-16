@@ -1,4 +1,5 @@
 import enaCarnero from "../assets/docentes/ENA_CARNERO.webp";
+import marielaGutierrez from "../assets/docentes/MARIELA_GUTIERREZ.webp";
 
 export const director = {
   nombre: "Dra. Ena Carnero",
@@ -13,6 +14,7 @@ export const administrativos = [
     nombre: "Mariela Beatriz Gutiérrez González",
     cargo: "Secretaria de Escuela",
     correo: "",
+    foto: marielaGutierrez,
   },
 ];
 

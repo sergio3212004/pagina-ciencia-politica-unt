@@ -15,8 +15,17 @@ export default function Administrativos() {
         <div className="mx-auto mt-10 grid max-w-3xl gap-6">
           {administrativos.map((persona) => (
             <article key={persona.nombre} className="flex flex-col items-center gap-5 rounded-2xl border border-gray-100 bg-gray-50 p-7 text-center shadow-sm sm:flex-row sm:text-left">
-              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                <BriefcaseBusiness className="h-9 w-9" aria-hidden="true" />
+              <div className="flex h-28 w-24 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-primary/10 text-primary">
+                {persona.foto ? (
+                  <img
+                    src={persona.foto}
+                    alt={`Fotografía de ${persona.nombre}`}
+                    className="h-full w-full object-cover object-top"
+                    loading="lazy"
+                  />
+                ) : (
+                  <BriefcaseBusiness className="h-9 w-9" aria-hidden="true" />
+                )}
               </div>
               <div>
                 <p className="mb-1 text-xs font-black uppercase tracking-[0.16em] text-gold">{persona.cargo}</p>
