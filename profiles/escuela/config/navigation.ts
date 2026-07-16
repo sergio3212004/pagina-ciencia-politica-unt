@@ -51,8 +51,8 @@ export const NAV_LINKS: NavSection[] = [
             name: 'Objetivos',
             path: '/academico/objetivos',
             navAs: [
+              { name: 'Objetivos institucionales', path: '/academico/objetivos#institucionales' },
               { name: 'Objetivos académicos', path: '/academico/objetivos#academicos' },
-              { name: 'Objetivos educacionales', path: '/academico/objetivos#educativos' },
             ],
           },
           {
@@ -100,7 +100,6 @@ export const NAV_LINKS: NavSection[] = [
             path: '/organizacion/direccion',
             navAs: [
               { name: 'Director de escuela', path: '/organizacion/direccion#escuela' },
-              { name: 'Director de departamento', path: '/organizacion/direccion#departamento' },
             ],
           },
         ],

@@ -83,7 +83,26 @@ const nodeTypes: NodeTypes = { courseNode: CourseNode };
 
 const PLAN_PDF = `${import.meta.env.BASE_URL}Plan_de_Estudios_2025.pdf`;
 
-export default function MallaFlow() {
+export interface CurriculumDownload {
+  label: string;
+  href: string;
+}
+
+interface MallaFlowProps {
+  curriculumData?: CourseData[];
+  prerequisiteEdges?: Edge[];
+  downloads?: CurriculumDownload[];
+  planLabel?: string;
+  officialStats?: { cycles: number; courses: number; credits: number };
+}
+
+export default function MallaFlow({
+  curriculumData = CURRICULUM_DATA,
+  prerequisiteEdges = PREREQUISITES_EDGES,
+  downloads = [{ label: 'Descargar Plan de Estudios', href: PLAN_PDF }],
+  planLabel = 'plan de estudios',
+  officialStats,
+}: MallaFlowProps) {
   const [selectedCourse, setSelectedCourse] = useState<CourseData | null>(null);
   const [isDesktop, setIsDesktop] = useState(false);
   const [showHelp, setShowHelp] = useState(true);
@@ -104,20 +123,33 @@ export default function MallaFlow() {
   }, []);
 
   // Resumen de la malla para el estado por defecto del panel.
-  const stats = useMemo(() => ({
-    cycles: new Set(CURRICULUM_DATA.map((c) => c.cycle)).size,
-    courses: CURRICULUM_DATA.length,
-    credits: CURRICULUM_DATA.reduce((sum, c) => sum + c.credits, 0),
-  }), []);
+  const stats = useMemo(() => officialStats ?? ({
+      cycles: new Set(curriculumData.map((c) => c.cycle)).size,
+      courses: curriculumData.length,
+      credits: curriculumData.reduce((sum, c) => sum + c.credits, 0),
+    }), [curriculumData, officialStats]);
 
   // Orden de ciclos por primera aparición (para la vista de texto accesible).
   const cyclesOrdered = useMemo(() => {
     const seen: string[] = [];
-    CURRICULUM_DATA.forEach((c) => {
+    curriculumData.forEach((c) => {
       if (!seen.includes(c.cycle)) seen.push(c.cycle);
     });
     return seen;
-  }, []);
+  }, [curriculumData]);
+
+  // Nombres de los prerrequisitos por curso, derivados de las mismas aristas
+  // que se dibujan en el grafo para mantener detalle y visualización sincronizados.
+  const prerequisitesByCourse = useMemo(() => {
+    const coursesById = new Map(curriculumData.map((course) => [course.id, course]));
+    const result = new Map<string, CourseData[]>();
+    prerequisiteEdges.forEach((edge) => {
+      const prerequisite = coursesById.get(edge.source);
+      if (!prerequisite) return;
+      result.set(edge.target, [...(result.get(edge.target) ?? []), prerequisite]);
+    });
+    return result;
+  }, [curriculumData, prerequisiteEdges]);
 
   // Cierra el modal de detalle con Escape.
   useEffect(() => {
@@ -136,8 +168,8 @@ export default function MallaFlow() {
   const openCourse = useCallback((course: CourseData) => setSelectedCourse(course), []);
 
   const initialNodes = useMemo<Node<CourseNodeData>[]>(() => {
-    return CURRICULUM_DATA.map((course) => {
-      const sameCycle = CURRICULUM_DATA.filter((c) => c.cycle === course.cycle);
+    return curriculumData.map((course) => {
+      const sameCycle = curriculumData.filter((c) => c.cycle === course.cycle);
       const orderInCycle = sameCycle.indexOf(course);
       return {
         id: course.id,
@@ -146,12 +178,12 @@ export default function MallaFlow() {
         data: { ...course, onOpen: openCourse },
       };
     });
-  }, [openCourse]);
+  }, [curriculumData, openCourse]);
 
   const initialEdges = useMemo<Edge[]>(() => {
     const reduce = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    return PREREQUISITES_EDGES.map((e) => ({ ...e, animated: !reduce }));
-  }, []);
+    return prerequisiteEdges.map((e) => ({ ...e, animated: !reduce }));
+  }, [prerequisiteEdges]);
 
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
   const [edges, , onEdgesChange] = useEdgesState(initialEdges);
@@ -176,6 +208,13 @@ export default function MallaFlow() {
       </h4>
       <p className="text-xs text-slate-600 leading-relaxed mb-4">{course.description}</p>
 
+      <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+        Prerrequisito
+      </h4>
+      <p className="text-xs text-slate-700 leading-relaxed mb-4">
+        {prerequisitesByCourse.get(course.id)?.map((item) => item.name).join(', ') || 'Ninguno'}
+      </p>
+
       <div className="grid grid-cols-2 gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200/60 text-xs mb-4">
         <div className="flex items-center gap-2">
           <Award size={16} className="text-slate-600 shrink-0" />
@@ -193,21 +232,25 @@ export default function MallaFlow() {
         </div>
       </div>
 
-      <a
-        href={PLAN_PDF}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 px-4 py-2 bg-slate-950 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl shadow-md transition-colors"
-      >
-        <Download size={14} /> Descargar Plan de Estudios
-      </a>
+      <div className="flex flex-wrap gap-2">
+        {downloads.map((item) => (
+          <a
+            key={item.href}
+            href={item.href}
+            download
+            className="inline-flex items-center gap-2 px-4 py-2 bg-slate-950 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl shadow-md transition-colors"
+          >
+            <Download size={14} /> {item.label}
+          </a>
+        ))}
+      </div>
     </>
   );
 
   // Estado por defecto del panel: resumen de la malla.
   const overview = (
     <>
-      <h3 className="font-display font-black text-primary text-lg leading-tight mb-2">Malla curricular</h3>
+      <h3 className="font-display font-black text-primary text-lg leading-tight mb-2">Malla curricular · {planLabel}</h3>
       <p className="text-sm text-slate-600 leading-relaxed mb-5">
         Mapa interactivo del plan de estudios por ciclos. Selecciona un curso para ver sus créditos,
         horas y descripción. Las líneas conectan los prerrequisitos.
@@ -231,14 +274,18 @@ export default function MallaFlow() {
         <div className="flex items-center gap-2"><span className="w-3.5 h-3.5 bg-sky-50 border border-sky-400 rounded shrink-0" /><span className="text-slate-700">Estudios de Especialidad</span></div>
       </div>
 
-      <a
-        href={PLAN_PDF}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-6 inline-flex items-center gap-2 px-4 py-2 bg-slate-950 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl shadow-md transition-colors"
-      >
-        <Download size={14} /> Descargar Plan de Estudios
-      </a>
+      <div className="mt-6 flex flex-col items-start gap-2">
+        {downloads.map((item) => (
+          <a
+            key={item.href}
+            href={item.href}
+            download
+            className="inline-flex items-center gap-2 px-4 py-2 bg-slate-950 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl shadow-md transition-colors"
+          >
+            <Download size={14} /> {item.label}
+          </a>
+        ))}
+      </div>
     </>
   );
 
@@ -260,16 +307,18 @@ export default function MallaFlow() {
             <th scope="col">Curso</th>
             <th scope="col">Créditos</th>
             <th scope="col">Tipo</th>
+            <th scope="col">Prerrequisito</th>
           </tr>
         </thead>
         <tbody>
           {cyclesOrdered.map((cycle) =>
-            CURRICULUM_DATA.filter((c) => c.cycle === cycle).map((c) => (
+            curriculumData.filter((c) => c.cycle === cycle).map((c) => (
               <tr key={c.id}>
                 <td>{cycle}</td>
                 <td>{c.name}</td>
                 <td>{c.credits}</td>
                 <td>{c.isElective ? 'Electivo' : 'Obligatorio'}</td>
+                <td>{prerequisitesByCourse.get(c.id)?.map((item) => item.name).join(', ') || 'Ninguno'}</td>
               </tr>
             ))
           )}

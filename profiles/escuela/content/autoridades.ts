@@ -1,10 +1,25 @@
+import enaCarnero from "../assets/docentes/ENA_CARNERO.webp";
+
 export const director = {
-  nombre: "Nombre del Director(a)",
-  cargo: "Director(a) de Escuela",
-  correo: "direccion@universidad.edu.pe",
-  bio: "Breve reseña del director(a): grado académico, especialidad y experiencia. Reemplaza este texto por la del director(a) de tu programa.",
-  foto: null // Reemplaza por la ruta de la foto o deja null para la silueta
+  nombre: "Dra. Ena Carnero",
+  cargo: "Directora de Escuela",
+  correo: "",
+  bio: "Directora de la Escuela Profesional de Ciencia Política y Gobernabilidad.",
+  foto: enaCarnero,
 };
+
+export const administrativos = [
+  {
+    nombre: "Mariela Beatriz Gutiérrez González",
+    cargo: "Secretaria de Escuela",
+    correo: "",
+  },
+];
+
+// Cambia estos valores a `true` cuando la Escuela cuente nuevamente con estas
+// instancias. Los datos se conservan debajo para poder editarlos y reactivarlos.
+export const mostrarCoordinaciones = false;
+export const mostrarDireccionDepartamento = false;
 
 export const coordinadores = [
   {
@@ -24,17 +39,120 @@ export const coordinadores = [
   }
 ];
 
-// Estructura según el Estatuto UNT vigente (2021, pág. 18): una Facultad se
-// compone de Escuela Profesional, Departamentos Académicos, Unidad de Segunda
-// Especialidad, Unidad de Investigación y Unidad de Posgrado.
+// Organigrama oficial de la Facultad de Derecho y Ciencias Políticas — UNT 2021.
+// Se conserva como árbol editable: cada elemento de `hijos` genera una línea
+// directa hacia la unidad de la cual depende.
 export const organigrama = {
-  nombre: "Facultad",
-  cargo: "Decano(a)",
+  nombre: "Asamblea Universitaria",
+  tipo: "gobierno",
   hijos: [
-    { nombre: "Escuela Profesional", cargo: "Director(a) de Escuela" },
-    { nombre: "Departamentos Académicos", cargo: "Jefe(s) de Departamento" },
-    { nombre: "Unidad de Segunda Especialidad", cargo: "" },
-    { nombre: "Unidad de Investigación", cargo: "" },
-    { nombre: "Unidad de Posgrado", cargo: "" }
-  ]
+    { nombre: "Comisión Permanente de Fiscalización", tipo: "control" },
+    { nombre: "Tribunal de Honor Universitario", tipo: "control" },
+    { nombre: "Comité Electoral Universitario", tipo: "control" },
+    {
+      nombre: "Consejo Universitario",
+      tipo: "gobierno",
+      hijos: [
+        { nombre: "Defensoría Universitaria", tipo: "control" },
+        {
+          nombre: "Rectorado",
+          tipo: "gobierno",
+          hijos: [
+            { nombre: "Órgano de Control Institucional", tipo: "control" },
+            {
+              nombre: "Vicerrectorado Académico",
+              tipo: "universidad",
+              hijos: [
+                { nombre: "Comisión Permanente Académica", tipo: "control" },
+                { nombre: "Filiales Desconcentradas", tipo: "universidad" },
+              ],
+            },
+            {
+              nombre: "Vicerrectorado de Investigación",
+              tipo: "universidad",
+              hijos: [
+                { nombre: "Comisión Permanente de Investigación", tipo: "control" },
+              ],
+            },
+            {
+              nombre: "Facultad de Derecho y Ciencias Políticas",
+              tipo: "facultad",
+              hijos: [
+                {
+                  nombre: "Consejo de Facultad",
+                  tipo: "facultad",
+                  hijos: [
+                    {
+                      nombre: "Decanato",
+                      tipo: "facultad",
+                      hijos: [
+                        { nombre: "Secretaría de Decanato", tipo: "administrativo" },
+                        {
+                          nombre: "Administración",
+                          tipo: "administrativo",
+                          hijos: [
+                            { nombre: "Mesa de Partes / Técnico Administrativo II", tipo: "administrativo" },
+                            { nombre: "Unidad de Biblioteca", tipo: "administrativo" },
+                            { nombre: "Oficina de Cómputo", tipo: "administrativo" },
+                            { nombre: "Conserjería", tipo: "administrativo" },
+                            { nombre: "Mantenimiento", tipo: "administrativo" },
+                          ],
+                        },
+                        { nombre: "Departamento Académico de Derecho", tipo: "academico" },
+                        {
+                          nombre: "Escuela Profesional de Derecho",
+                          tipo: "escuela",
+                          hijos: [
+                            {
+                              nombre: "Secretaría de Registro Técnico",
+                              tipo: "administrativo",
+                              hijos: [{ nombre: "Técnico Administrativo II", tipo: "administrativo" }],
+                            },
+                          ],
+                        },
+                        { nombre: "Departamento Académico de Ciencias Políticas y Gobernabilidad", tipo: "academico" },
+                        {
+                          nombre: "Escuela Profesional de Ciencia Política y Gobernabilidad",
+                          tipo: "escuela",
+                          hijos: [
+                            {
+                              nombre: "Secretaría de Registro Técnico",
+                              tipo: "administrativo",
+                              hijos: [{ nombre: "Técnico Administrativo II", tipo: "administrativo" }],
+                            },
+                          ],
+                        },
+                        { nombre: "Unidad de Segunda Especialidad", tipo: "unidad" },
+                        { nombre: "Unidad de Investigación", tipo: "unidad" },
+                        { nombre: "Instituto de Investigación Jurídico-Políticas", tipo: "investigacion" },
+                        { nombre: "Centro de Extensión y Proyección Jurídico y Político (CEPEJUP)", tipo: "extension" },
+                        { nombre: "Unidad de Posgrado", tipo: "unidad" },
+                        {
+                          nombre: "Unidad de Calidad",
+                          tipo: "calidad",
+                          hijos: [
+                            {
+                              nombre: "Especialista Administrativo I",
+                              tipo: "administrativo",
+                              hijos: [
+                                {
+                                  nombre: "Especialista Administrativo I",
+                                  tipo: "administrativo",
+                                  hijos: [{ nombre: "Especialista Administrativo I", tipo: "administrativo" }],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };

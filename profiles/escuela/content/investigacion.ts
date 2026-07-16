@@ -1,3 +1,5 @@
+import dialogosPoliticosImage from '../assets/revistas/dialogos-politicos.webp';
+
 export const lineasInvestigacion = [
   {
     nombre: "Línea de investigación 1",
@@ -41,6 +43,20 @@ export const publicaciones = [
     revista: "Nombre de la revista",
     url: "#"
   }
+];
+
+export const revistas = [
+  {
+    nombre: "Diálogos Políticos",
+    tipo: "Revista científica",
+    edicion: "Vol. 01, N.º 1",
+    tema: "Democracia en tiempos de elecciones y fragmentación partidaria",
+    descripcion:
+      "Revista científica de la Escuela Profesional de Ciencia Política y Gobernabilidad de la Universidad Nacional de Trujillo.",
+    imagen: dialogosPoliticosImage,
+    imagenAlt:
+      "Afiche de presentación de la revista científica Diálogos Políticos de la Universidad Nacional de Trujillo",
+  },
 ];
 
 export const convenios = [

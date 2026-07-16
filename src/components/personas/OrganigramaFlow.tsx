@@ -27,17 +27,19 @@ import { organigrama } from '@profile/content/autoridades';
 interface NodoOrg {
   nombre: string;
   cargo?: string;
+  tipo?: string;
   hijos?: NodoOrg[];
 }
 
 interface OrgData {
   nombre: string;
   cargo?: string;
+  tipo?: string;
   level: number;
 }
 
-const NODE_W = 240;
-const NODE_H = 96;
+const NODE_W = 224;
+const NODE_H = 76;
 
 // ReactFlow exige color literal en JS (no acepta clases de Tailwind). Estas
 // constantes son el espejo de los tokens: `primary` de tailwind.config.js y el
@@ -48,16 +50,29 @@ const GRID_COLOR = '#cbd5e1'; // slate-300
 // ── Nodo on‑brand: raíz en azul (cargo dorado); resto blanco con franja superior ──
 function OrgNode({ data }: NodeProps<OrgData>) {
   const isRoot = data.level === 0;
+  const nodeStyle = {
+    gobierno: 'bg-slate-100 border-slate-400 text-slate-900',
+    facultad: 'bg-lime-100 border-lime-500 text-lime-950',
+    administrativo: 'bg-sky-50 border-sky-300 text-sky-950',
+    academico: 'bg-rose-50 border-rose-300 text-rose-950',
+    escuela: 'bg-amber-50 border-amber-300 text-amber-950',
+    unidad: 'bg-blue-50 border-blue-300 text-blue-950',
+    investigacion: 'bg-amber-100 border-amber-400 text-amber-950',
+    extension: 'bg-orange-50 border-orange-300 text-orange-950',
+    calidad: 'bg-emerald-50 border-emerald-300 text-emerald-950',
+    control: 'bg-white border-slate-300 text-slate-800',
+    universidad: 'bg-white border-slate-400 text-slate-900',
+  }[data.tipo ?? 'universidad'];
   return (
     <div
-      className={`relative w-60 px-4 py-3 rounded-xl shadow-lg border text-center overflow-hidden ${
-        isRoot ? 'bg-primary text-white border-transparent ring-4 ring-primary/10' : 'bg-white border-gray-100'
+      className={`relative w-56 min-h-[76px] px-3 py-2 rounded-lg shadow-md border text-center overflow-hidden flex flex-col justify-center ${
+        isRoot ? 'bg-primary text-white border-transparent ring-4 ring-primary/10' : nodeStyle
       }`}
     >
-      <Handle type="target" position={Position.Top} className="!opacity-0" />
-      {!isRoot && <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-gold" />}
+      <Handle type="target" position={Position.Left} className="!opacity-0" />
+      {!isRoot && <div className="absolute top-0 left-0 right-0 h-1 bg-current opacity-30" />}
 
-      <h4 className={`font-display font-bold leading-tight ${isRoot ? 'text-white text-base' : 'text-primary text-sm'}`}>
+      <h4 className={`font-display font-bold leading-tight ${isRoot ? 'text-white text-sm' : 'text-xs'}`}>
         {data.nombre}
       </h4>
       {data.cargo && (
@@ -66,7 +81,7 @@ function OrgNode({ data }: NodeProps<OrgData>) {
         </p>
       )}
 
-      <Handle type="source" position={Position.Bottom} className="!opacity-0" />
+      <Handle type="source" position={Position.Right} className="!opacity-0" />
     </div>
   );
 }
@@ -81,7 +96,7 @@ function buildGraph(root: NodoOrg) {
 
   const walk = (nodo: NodoOrg, level: number, parentId: string | null) => {
     const id = `org-${counter++}`;
-    nodes.push({ id, type: 'orgNode', position: { x: 0, y: 0 }, data: { nombre: nodo.nombre, cargo: nodo.cargo, level } });
+    nodes.push({ id, type: 'orgNode', position: { x: 0, y: 0 }, data: { nombre: nodo.nombre, cargo: nodo.cargo, tipo: nodo.tipo, level } });
     if (parentId) {
       edges.push({
         id: `${parentId}->${id}`,
@@ -101,7 +116,7 @@ function buildGraph(root: NodoOrg) {
 // dagre posiciona (TB, de arriba‑abajo) y devuelve centros: los paso a top‑left.
 function layout(nodes: Node<OrgData>[], edges: Edge[]): Node<OrgData>[] {
   const g = new dagre.graphlib.Graph();
-  g.setGraph({ rankdir: 'TB', nodesep: 40, ranksep: 70, marginx: 24, marginy: 24 });
+  g.setGraph({ rankdir: 'LR', nodesep: 24, ranksep: 64, marginx: 24, marginy: 24 });
   g.setDefaultEdgeLabel(() => ({}));
 
   nodes.forEach((n) => g.setNode(n.id, { width: NODE_W, height: NODE_H }));
@@ -114,8 +129,8 @@ function layout(nodes: Node<OrgData>[], edges: Edge[]): Node<OrgData>[] {
     return {
       ...n,
       position: { x: x - NODE_W / 2, y: y - NODE_H / 2 },
-      targetPosition: Position.Top,
-      sourcePosition: Position.Bottom,
+      targetPosition: Position.Left,
+      sourcePosition: Position.Right,
     };
   });
 }
@@ -151,7 +166,7 @@ export default function OrganigramaFlow() {
 
       <div
         aria-hidden="true"
-        className="relative w-full h-[60svh] min-h-[420px] md:h-[560px] rounded-xl border border-slate-200 overflow-hidden shadow-sm bg-slate-50"
+        className="relative w-full h-[72svh] min-h-[520px] md:h-[720px] rounded-xl border border-slate-200 overflow-hidden shadow-sm bg-slate-50"
       >
         <ReactFlow
           nodes={nodes}

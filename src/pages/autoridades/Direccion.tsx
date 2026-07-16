@@ -1,7 +1,7 @@
 import React from 'react';
 import { SectionTitle } from '../../components/ui/SectionTitle';
 import AutoridadCard from '../../components/personas/AutoridadCard';
-import { director, coordinadores } from '@profile/content/autoridades';
+import { director, coordinadores, mostrarCoordinaciones } from '@profile/content/autoridades';
 import { site } from '@/profile';
 
 export default function Direccion() {
@@ -14,12 +14,16 @@ export default function Direccion() {
           <AutoridadCard autoridad={director} principal={true} />
         </div>
 
-        <h3 className="text-2xl md:text-3xl font-display font-bold text-center text-primary mb-10">Coordinaciones</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {coordinadores.map((coord, idx) => (
-            <AutoridadCard key={idx} autoridad={coord} />
-          ))}
-        </div>
+        {mostrarCoordinaciones && (
+          <section aria-labelledby="titulo-coordinaciones">
+            <h3 id="titulo-coordinaciones" className="text-2xl md:text-3xl font-display font-bold text-center text-primary mb-10">Coordinaciones</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {coordinadores.map((coord, idx) => (
+                <AutoridadCard key={idx} autoridad={coord} />
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );

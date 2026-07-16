@@ -1,9 +1,8 @@
 import type { Edge } from 'reactflow';
 
-// Datos del plan de estudios de la escuela (contenido del perfil).
-// El componente MallaFlow (sistema) consume estos datos vía @profile/content/malla.
+// Plan de estudios vigente de Ciencia Política y Gobernabilidad.
+// Fuente: plan de estudios actualmente publicado por la Escuela.
 
-// ── Tipos ──────────────────────────────────────────────────────────────────
 export type AreaType = 'general' | 'especifico' | 'especialidad';
 
 export interface CourseData {
@@ -18,118 +17,150 @@ export interface CourseData {
   description: string;
 }
 
-// ── Datos del plan de estudios (EJEMPLO de plantilla: Educación Primaria) ────
+type CourseInput = Omit<CourseData, 'description'> & { description?: string };
+
+const course = (data: CourseInput): CourseData => ({
+  ...data,
+  description: data.description ??
+    `Asignatura ${data.isElective ? 'electiva' : 'obligatoria'} del área de ${
+      data.type === 'general'
+        ? 'Estudios Generales'
+        : data.type === 'especifico'
+          ? 'Estudios Específicos'
+          : 'Estudios de Especialidad'
+    } del Programa de Ciencia Política y Gobernabilidad.`,
+});
+
 export const CURRICULUM_DATA: CourseData[] = [
-  // CICLO I
-  { id: 'G-1', name: 'Desarrollo Personal', type: 'general', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo I', isElective: false, description: 'Contribuye al logro de capacidades terminales referidas a la inteligencia emocional y principios éticos.' },
-  { id: 'G-2', name: 'Desarrollo del Pensamiento Lógico Matemático', type: 'general', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo I', isElective: false, description: 'Desarrollo de habilidades lógicas y resolución de problemas matemáticos básicos.' },
-  { id: 'G-3', name: 'Gestión de los Aprendizajes y Estrategias de Estudio', type: 'general', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo I', isElective: false, description: 'Estrategias de autoaprendizaje y metaprendizaje colaborativo autónomo.' },
-  { id: 'G-4', name: 'Lectura Crítica y Redacción de Textos Académicos', type: 'general', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo I', isElective: false, description: 'Comprensión lectora y producción de textos académicos con rigor gramatical.' },
-  { id: 'G-5', name: 'Historia de la Cultura (Optativo)', type: 'general', credits: 4, hoursT: 4, hoursP: 2, cycle: 'Ciclo I', isElective: false, description: 'Comprensión de la evolución cultural en el mundo y América.' },
-  { id: 'ES-1', name: 'Psicología del Desarrollo Humano', type: 'especifico', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo I', isElective: false, description: 'Estudio del ciclo vital con énfasis en la niñez, adolescencia y juventud.' },
-  { id: 'E-1', name: 'Taller de Técnicas de Comunicación Eficaz', type: 'general', credits: 2, hoursT: 0, hoursP: 4, cycle: 'Ciclo I', isElective: true, description: 'Taller electivo enfocado en mejorar las competencias comunicativas y el trabajo en equipo.' },
+  // CICLO I · 22 créditos
+  course({ id: 'CP-101', name: 'Desarrollo del Pensamiento Matemático', type: 'general', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo I', isElective: false }),
+  course({ id: 'CP-102', name: 'Comunicación y Argumentación', type: 'general', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo I', isElective: false }),
+  course({ id: 'CP-103', name: 'Desarrollo Personal y Social', type: 'general', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo I', isElective: false }),
+  course({ id: 'CP-104', name: 'Economía Política', type: 'especifico', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo I', isElective: false }),
+  course({ id: 'CP-105', name: 'Historia del Pensamiento Político', type: 'especialidad', credits: 5, hoursT: 4, hoursP: 2, cycle: 'Ciclo I', isElective: false }),
+  course({ id: 'CP-106', name: 'Derecho Constitucional', type: 'especifico', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo I', isElective: false }),
+  course({ id: 'CP-107', name: 'Actividad Extracurricular: Liderazgo y Trabajo en Equipo', type: 'general', credits: 0, hoursT: 0, hoursP: 2, cycle: 'Ciclo I', isElective: false }),
 
-  // CICLO II
-  { id: 'G-6', name: 'Sociedad, Cultura y Ecología', type: 'general', credits: 3, hoursT: 4, hoursP: 1, cycle: 'Ciclo II', isElective: false, description: 'Análisis de problemáticas sociales, culturales y del medio ambiente.' },
-  { id: 'G-7', name: 'Cultura Investigativa y Pensamiento Crítico', type: 'general', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo II', isElective: false, description: 'Formulación de soluciones viables mediante el método científico.' },
-  { id: 'G-8', name: 'Ética, Convivencia Humana y Ciudadanía', type: 'general', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo II', isElective: false, description: 'Práctica de principios morales y convivencia pacífica democrática.' },
-  { id: 'G-9', name: 'Identidad Cultural Regional, Nacional e Internacional', type: 'general', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo II', isElective: false, description: 'Procesos de construcción de la identidad frente a la diversidad cultural.' },
-  { id: 'G-10', name: 'Fundamentos de Filosofía (Optativo)', type: 'general', credits: 4, hoursT: 2, hoursP: 4, cycle: 'Ciclo II', isElective: false, description: 'Corrientes filosóficas contemporáneas y consecuencias éticas de la ciencia.' },
-  { id: 'ES-2', name: 'Psicología del Aprendizaje', type: 'especifico', credits: 3, hoursT: 2, hoursP: 1, cycle: 'Ciclo II', isElective: false, description: 'Explicación y aplicación de las teorías conductistas, cognitivas y humanistas del aprendizaje.' },
-  { id: 'ES-3', name: 'Historia de la Educación', type: 'especifico', credits: 2, hoursT: 2, hoursP: 1, cycle: 'Ciclo II', isElective: false, description: 'Evolución histórica de la educación con eje Perú-Mundo.' },
-  { id: 'E-2', name: 'Taller de Manejo de TIC', type: 'general', credits: 2, hoursT: 0, hoursP: 4, cycle: 'Ciclo II', isElective: true, description: 'Uso creativo de procesadores de texto científicos, LaTeX y herramientas en la nube.' },
+  // CICLO II · 22 créditos
+  course({ id: 'CP-201', name: 'Lectura y Producción de Textos Académicos', type: 'general', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo II', isElective: false }),
+  course({ id: 'CP-202', name: 'Gestión de los Aprendizajes', type: 'general', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo II', isElective: false }),
+  course({ id: 'CP-203', name: 'Análisis Crítico de la Realidad', type: 'general', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo II', isElective: false }),
+  course({ id: 'CP-204', name: 'Actividad Extracurricular: Introducción al Uso de TIC', type: 'general', credits: 0, hoursT: 0, hoursP: 2, cycle: 'Ciclo II', isElective: false }),
+  course({ id: 'CP-205', name: 'Introducción a la Ciencia Política', type: 'especialidad', credits: 5, hoursT: 4, hoursP: 2, cycle: 'Ciclo II', isElective: false }),
+  course({ id: 'CP-206', name: 'Historia de la Política Peruana', type: 'especialidad', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo II', isElective: false }),
+  course({ id: 'CP-207', name: 'Derechos Humanos', type: 'especifico', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo II', isElective: false }),
 
-  // CICLO III
-  { id: 'ES-4', name: 'Neurociencia y Aprendizaje', type: 'especifico', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo III', isElective: false, description: 'Procesos neurobiológicos y su implicancia en los modelos instruccionales.' },
-  { id: 'ES-5', name: 'Pedagogía', type: 'especifico', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo III', isElective: false, description: 'Comprensión del carácter científico de la Pedagogía y sus modelos teóricos.' },
-  { id: 'ES-6', name: 'Didáctica General', type: 'especifico', credits: 4, hoursT: 2, hoursP: 3, cycle: 'Ciclo III', isElective: false, description: 'Estrategias metodológicas modernas para optimizar el proceso de enseñanza-aprendizaje.' },
-  { id: 'ES-7', name: 'Políticas Educativas y Realidad Nacional', type: 'especifico', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo III', isElective: false, description: 'Impacto de las políticas globales en la estructura educativa peruana.' },
-  { id: 'ES-8', name: 'Teoría Curricular', type: 'especifico', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo III', isElective: false, description: 'Análisis de enfoques, dimensiones y elementos curriculares.' },
-  { id: 'ES-9', name: 'Evaluación de los Aprendizajes', type: 'especifico', credits: 4, hoursT: 2, hoursP: 3, cycle: 'Ciclo III', isElective: false, description: 'Diseño técnico de criterios, indicadores e instrumentos de evaluación por competencias.' },
-  { id: 'ES-10', name: 'Ludopedagogía', type: 'especifico', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo III', isElective: false, description: 'El juego como eje del bienestar físico, social y emocional infantil.' },
+  // CICLO III · 22 créditos
+  course({ id: 'CP-301', name: 'Introducción a la Investigación Científica', type: 'general', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo III', isElective: false }),
+  course({ id: 'CP-302', name: 'Desarrollo Sostenible', type: 'general', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo III', isElective: false }),
+  course({ id: 'CP-303', name: 'Teoría del Estado', type: 'especifico', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo III', isElective: false }),
+  course({ id: 'CP-304', name: 'Filosofía Política', type: 'especifico', credits: 2, hoursT: 1, hoursP: 2, cycle: 'Ciclo III', isElective: false }),
+  course({ id: 'CP-305', name: 'Teoría del Poder Político', type: 'especialidad', credits: 5, hoursT: 4, hoursP: 2, cycle: 'Ciclo III', isElective: false }),
+  course({ id: 'CP-306', name: 'Integración y Sistema Internacional', type: 'especifico', credits: 5, hoursT: 3, hoursP: 4, cycle: 'Ciclo III', isElective: false }),
+  course({ id: 'CP-307', name: 'Actividad Extracurricular: Talleres de Deporte I', type: 'general', credits: 0, hoursT: 0, hoursP: 2, cycle: 'Ciclo III', isElective: true, description: 'Elección entre fútbol, básquet, vóley, atletismo o ajedrez.' }),
 
-  // CICLO IV
-  { id: 'EP-1', name: 'Técnicas de Programación Curricular', type: 'especialidad', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo IV', isElective: false, description: 'Diversificación curricular y diseño de unidades y proyectos a corto plazo.' },
-  { id: 'ES-11', name: 'Investigación Integral I', type: 'especifico', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo IV', isElective: false, description: 'Técnicas de fichaje, argumentación y redacción de monografías.' },
-  { id: 'EP-2', name: 'Didáctica de la Lectura y Escritura', type: 'especialidad', credits: 4, hoursT: 2, hoursP: 3, cycle: 'Ciclo IV', isElective: false, description: 'Bases teóricas de la adquisición de la lectoescritura según enfoques actuales.' },
-  { id: 'EP-3', name: 'Didáctica de la Iniciación Matemática', type: 'especialidad', credits: 4, hoursT: 2, hoursP: 3, cycle: 'Ciclo IV', isElective: false, description: 'Matemática lúdica y resolución de problemas para nociones pre-numéricas.' },
-  { id: 'ES-12', name: 'Consejería y Tutoría', type: 'especifico', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo IV', isElective: false, description: 'Modelos de intervención tutorial y planes de acción tutorial en la escuela.' },
-  { id: 'ES-13', name: 'Educación Emocional y Sexual para Niños', type: 'especifico', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo IV', isElective: false, description: 'Orientaciones psicopedagógicas para el soporte emocional infantil.' },
-  { id: 'ES-14', name: 'Nutrición Escolar', type: 'especifico', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo IV', isElective: false, description: 'Salud, alimentación balanceada infantil y prevención de la desnutrición.' },
+  // CICLO IV · 22 créditos
+  course({ id: 'CP-401', name: 'Lógica y Desarrollo del Conocimiento Científico', type: 'general', credits: 2, hoursT: 1, hoursP: 2, cycle: 'Ciclo IV', isElective: false }),
+  course({ id: 'CP-402', name: 'Cultura Política y Problemática de la Realidad Nacional', type: 'general', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo IV', isElective: false }),
+  course({ id: 'CP-403', name: 'Estadística Aplicada a la Ciencia Política', type: 'especialidad', credits: 5, hoursT: 3, hoursP: 4, cycle: 'Ciclo IV', isElective: false }),
+  course({ id: 'CP-404', name: 'Teoría de la Democracia', type: 'especialidad', credits: 5, hoursT: 4, hoursP: 2, cycle: 'Ciclo IV', isElective: false }),
+  course({ id: 'CP-405', name: 'Derecho Administrativo', type: 'especifico', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo IV', isElective: false }),
+  course({ id: 'CP-406', name: 'Electivo de Especialidad I', type: 'especialidad', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo IV', isElective: true, description: 'Elección entre Política Criminal–Anticorrupción, Sociedad Civil y Participación, Asuntos Políticos Internacionales o Gobierno y Gobernabilidad.' }),
+  course({ id: 'CP-407', name: 'Actividad Extracurricular: Talleres de Deporte II', type: 'general', credits: 0, hoursT: 0, hoursP: 2, cycle: 'Ciclo IV', isElective: true, description: 'Elección entre fútbol, básquet, vóley, atletismo o ajedrez.' }),
 
-  // CICLO V
-  { id: 'ES-15', name: 'Investigación Integral II', type: 'especifico', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo V', isElective: false, description: 'Diseño de proyectos de investigación científica cuantitativa.' },
-  { id: 'EP-4', name: 'Didáctica para la Comprensión de Textos', type: 'especialidad', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo V', isElective: false, description: 'Enfoque del área de comunicación y estrategias de estimulación oral y lectora.' },
-  { id: 'EP-5', name: 'Práctica Pre-profesional I', type: 'especialidad', credits: 3, hoursT: 1, hoursP: 4, cycle: 'Ciclo V', isElective: false, description: 'Conocimiento del contexto escolar urbano marginal y diseño de sesiones básicas.' },
-  { id: 'EP-6', name: 'Didáctica de las Ciencias Sociales I', type: 'especialidad', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo V', isElective: false, description: 'Construcción de la identidad y participación democrática en el nivel primario.' },
-  { id: 'EP-7', name: 'Didáctica de la Matemática I', type: 'especialidad', credits: 4, hoursT: 3, hoursP: 1, cycle: 'Ciclo V', isElective: false, description: 'Problemas de regularidad, equivalencia, cambio, forma y localización.' },
-  { id: 'EP-8', name: 'Atención a Niños con Habilidades Diferentes', type: 'especialidad', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo V', isElective: false, description: 'Enfoques inclusivos, adaptaciones curriculares y necesidades educativas especiales.' },
-  { id: 'E-3', name: 'Didáctica del Idioma Inglés para Niños I', type: 'especialidad', credits: 3, hoursT: 1, hoursP: 4, cycle: 'Ciclo V', isElective: true, description: 'Módulos de didáctica comunicativa de lenguas extranjeras aplicadas a infantes.' },
+  // CICLO V · 22 créditos
+  course({ id: 'CP-501', name: 'Identidad Cultural Regional y Nacional', type: 'general', credits: 2, hoursT: 1, hoursP: 2, cycle: 'Ciclo V', isElective: false }),
+  course({ id: 'CP-502', name: 'Economía y Emprendedurismo', type: 'general', credits: 2, hoursT: 1, hoursP: 2, cycle: 'Ciclo V', isElective: false }),
+  course({ id: 'CP-503', name: 'Políticas Públicas', type: 'especialidad', credits: 5, hoursT: 3, hoursP: 4, cycle: 'Ciclo V', isElective: false }),
+  course({ id: 'CP-504', name: 'Derecho Parlamentario', type: 'especifico', credits: 5, hoursT: 3, hoursP: 4, cycle: 'Ciclo V', isElective: false }),
+  course({ id: 'CP-505', name: 'Descentralización del Estado', type: 'especifico', credits: 5, hoursT: 4, hoursP: 2, cycle: 'Ciclo V', isElective: false }),
+  course({ id: 'CP-506', name: 'Electivo de Especialidad II', type: 'especialidad', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo V', isElective: true, description: 'Elección entre Políticas Ambientales y Desarrollo Sostenible, Grupos de Poder en el Perú y América Latina, Geopolítica y Gobernanza Global o Gestión y Estrategias de Solución de Conflictos Sociales.' }),
+  course({ id: 'CP-507', name: 'Actividad Extracurricular: Talleres de Arte I', type: 'general', credits: 0, hoursT: 0, hoursP: 2, cycle: 'Ciclo V', isElective: true, description: 'Elección entre danzas típicas regionales, danzas peruanas y latinoamericanas o danzas modernas.' }),
 
-  // CICLO VI
-  { id: 'EP-9', name: 'Didáctica de la Ciencia y Tecnología I', type: 'especialidad', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo VI', isElective: false, description: 'Estudio y aplicación de metodologías para la enseñanza de las ciencias.' },
-  { id: 'EP-10', name: 'Didáctica de la Producción de Textos', type: 'especialidad', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo VI', isElective: false, description: 'Estrategias para el desarrollo de la escritura y producción textual en primaria.' },
-  { id: 'ES-16', name: 'Investigación Integral III', type: 'especifico', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo VI', isElective: false, description: 'Desarrollo de competencias investigativas y metodologías cuantitativas/cualitativas.' },
-  { id: 'EP-11', name: 'Práctica Pre-Profesional II', type: 'especialidad', credits: 3, hoursT: 1, hoursP: 4, cycle: 'Ciclo VI', isElective: false, description: 'Práctica en instituciones educativas para la observación y diseño de sesiones.' },
-  { id: 'EP-12', name: 'Didáctica de la Matemática II', type: 'especialidad', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo VI', isElective: false, description: 'Estrategias metodológicas para la enseñanza de operaciones y problemas complejos.' },
-  { id: 'EP-13', name: 'Didáctica de las Ciencias Sociales II', type: 'especialidad', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo VI', isElective: false, description: 'Profundización en la enseñanza de la historia, geografía y economía.' },
-  { id: 'E-4', name: 'Didáctica del Idioma Inglés para Niños II', type: 'especialidad', credits: 3, hoursT: 1, hoursP: 4, cycle: 'Ciclo VI', isElective: true, description: 'Metodologías para la enseñanza del inglés como segunda lengua en niños.' },
-  { id: 'E-5', name: 'Didáctica de la Danza para Niños II', type: 'especialidad', credits: 3, hoursT: 1, hoursP: 4, cycle: 'Ciclo VI', isElective: true, description: 'Uso de la danza y expresión corporal como recurso pedagógico.' },
-  { id: 'E-6', name: 'Didáctica de las TICs para Niños II', type: 'especialidad', credits: 0, hoursT: 1, hoursP: 4, cycle: 'Ciclo VI', isElective: true, description: 'Integración de tecnologías de la información en el proceso de enseñanza.' },
+  // CICLO VI · 22 créditos
+  course({ id: 'CP-601', name: 'Ética y Derechos Humanos', type: 'general', credits: 2, hoursT: 1, hoursP: 2, cycle: 'Ciclo VI', isElective: false }),
+  course({ id: 'CP-602', name: 'Contrataciones con el Estado', type: 'especifico', credits: 2, hoursT: 1, hoursP: 2, cycle: 'Ciclo VI', isElective: false }),
+  course({ id: 'CP-603', name: 'Diseño y Metodología de Investigación Política I', type: 'especialidad', credits: 5, hoursT: 3, hoursP: 4, cycle: 'Ciclo VI', isElective: false }),
+  course({ id: 'CP-604', name: 'Sistema Electoral Peruano', type: 'especialidad', credits: 5, hoursT: 4, hoursP: 2, cycle: 'Ciclo VI', isElective: false }),
+  course({ id: 'CP-605', name: 'Análisis de Coyuntura Política', type: 'especialidad', credits: 5, hoursT: 4, hoursP: 2, cycle: 'Ciclo VI', isElective: false }),
+  course({ id: 'CP-606', name: 'Electivo de Especialidad III', type: 'especialidad', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo VI', isElective: true, description: 'Elección entre Política de Prevención de la Violencia y Seguridad, Regímenes Políticos, Derecho Internacional Público o Conflictos Armados.' }),
+  course({ id: 'CP-607', name: 'Actividad Extracurricular: Talleres de Arte II', type: 'general', credits: 0, hoursT: 0, hoursP: 2, cycle: 'Ciclo VI', isElective: true, description: 'Elección entre apreciación musical, canto, ejecución instrumental, teatro, artes plásticas, creación literaria u oratoria.' }),
 
-  // CICLO VII
-  { id: 'ES-17', name: 'Informática Educativa', type: 'especifico', credits: 3, hoursT: 1, hoursP: 4, cycle: 'Ciclo VII', isElective: false, description: 'Uso de herramientas informáticas aplicadas a la gestión y procesos educativos.' },
-  { id: 'EP-14', name: 'Educación Básica Alternativa', type: 'especialidad', credits: 3, hoursT: 4, hoursP: 1, cycle: 'Ciclo VII', isElective: false, description: 'Fundamentos y didáctica para la educación de jóvenes y adultos.' },
-  { id: 'ES-18', name: 'Investigación Integral IV', type: 'especifico', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo VII', isElective: false, description: 'Elaboración y ejecución de proyectos de investigación educativa.' },
-  { id: 'EP-15', name: 'Práctica Pre-Profesional III', type: 'especialidad', credits: 3, hoursT: 1, hoursP: 4, cycle: 'Ciclo VII', isElective: false, description: 'Intervención directa en el aula de nivel primaria, diseño y conducción del aprendizaje.' },
-  { id: 'EP-16', name: 'Proyectos Productivos', type: 'especialidad', credits: 3, hoursT: 4, hoursP: 1, cycle: 'Ciclo VII', isElective: false, description: 'Diseño e implementación de proyectos productivos escolares.' },
-  { id: 'EP-17', name: 'Didáctica de la Ciencia y Tecnología II', type: 'especialidad', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo VII', isElective: false, description: 'Estrategias avanzadas y proyectos de experimentación científica escolar.' },
-  { id: 'E-7', name: 'Didáctica del Idioma Inglés para Niños III', type: 'especialidad', credits: 3, hoursT: 4, hoursP: 1, cycle: 'Ciclo VII', isElective: true, description: 'Práctica y aplicación de estrategias avanzadas de inglés para primaria.' },
-  { id: 'E-8', name: 'Didáctica de la Danza para Niños III', type: 'especialidad', credits: 3, hoursT: 4, hoursP: 1, cycle: 'Ciclo VII', isElective: true, description: 'Desarrollo de proyectos coreográficos y su evaluación pedagógica.' },
-  { id: 'E-9', name: 'Didáctica de la Enseñanza de las TICs para Niños III', type: 'especialidad', credits: 0, hoursT: 3, hoursP: 1, cycle: 'Ciclo VII', isElective: true, description: 'Creación de recursos educativos digitales e interactivos.' },
+  // CICLO VII · 22 créditos
+  course({ id: 'CP-701', name: 'Política Exterior, Relaciones y Negociaciones Internacionales', type: 'especialidad', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo VII', isElective: false }),
+  course({ id: 'CP-702', name: 'Diseño y Metodología de Investigación Política II', type: 'especialidad', credits: 4, hoursT: 2, hoursP: 4, cycle: 'Ciclo VII', isElective: false }),
+  course({ id: 'CP-703', name: 'Sistema de Administración y Modernización del Estado', type: 'especifico', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo VII', isElective: false }),
+  course({ id: 'CP-704', name: 'Partidos Políticos', type: 'especialidad', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo VII', isElective: false }),
+  course({ id: 'CP-705', name: 'Teoría de las Decisiones y Estrategia Política', type: 'especialidad', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo VII', isElective: false }),
+  course({ id: 'CP-706', name: 'Electivo de Especialidad IV', type: 'especialidad', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo VII', isElective: true, description: 'Elección entre Gestión Pública, Psicología Política, Cooperación Internacional o Conflictos Ambientales y Culturales en el Perú.' }),
 
-  // CICLO VIII
-  { id: 'ES-19', name: 'Entornos Virtuales para la Enseñanza Aprendizaje', type: 'especifico', credits: 3, hoursT: 1, hoursP: 4, cycle: 'Ciclo VIII', isElective: false, description: 'Gestión de plataformas virtuales, e-learning y recursos online.' },
-  { id: 'EP-18', name: 'Educación Rural', type: 'especialidad', credits: 4, hoursT: 4, hoursP: 2, cycle: 'Ciclo VIII', isElective: false, description: 'Características, desafíos y adaptaciones curriculares para la escuela rural.' },
-  { id: 'ES-20', name: 'Investigación Integral V', type: 'especifico', credits: 3, hoursT: 3, hoursP: 1, cycle: 'Ciclo VIII', isElective: false, description: 'Sistematización de resultados y redacción del informe de investigación.' },
-  { id: 'EP-19', name: 'Práctica Pre-Profesional IV', type: 'especialidad', credits: 3, hoursT: 0, hoursP: 4, cycle: 'Ciclo VIII', isElective: false, description: 'Consolidación de la práctica docente en diversas realidades y contextos.' },
-  { id: 'EP-20', name: 'Didáctica de Educación Física', type: 'especialidad', credits: 3, hoursT: 2, hoursP: 4, cycle: 'Ciclo VIII', isElective: false, description: 'Psicomotricidad, juegos y deportes adaptados al nivel primario.' },
-  { id: 'ES-21', name: 'Proyectos de Inversión e Innovación Educativa', type: 'especifico', credits: 3, hoursT: 2, hoursP: 2, cycle: 'Ciclo VIII', isElective: false, description: 'Formulación de proyectos orientados a la mejora continua y obtención de fondos.' },
-  { id: 'E-10', name: 'Práctica en Instituciones Educativas Bilingüe: Español Inglés', type: 'especialidad', credits: 0, hoursT: 1, hoursP: 4, cycle: 'Ciclo VIII', isElective: true, description: 'Práctica preprofesional en aulas bilingües.' },
-  { id: 'E-11', name: 'Práctica en la II.EE: Taller de Danzas', type: 'especialidad', credits: 3, hoursT: 1, hoursP: 4, cycle: 'Ciclo VIII', isElective: true, description: 'Aplicación práctica de talleres artísticos en el centro educativo.' },
-  { id: 'E-12', name: 'Práctica en II.EE. Laboratorio de Cómputo / Aula de Innovación', type: 'especialidad', credits: 0, hoursT: 1, hoursP: 4, cycle: 'Ciclo VIII', isElective: true, description: 'Gestión y docencia en el aula de innovación pedagógica.' },
+  // CICLO VIII · 22 créditos
+  course({ id: 'CP-801', name: 'Conflictos Sociales', type: 'especifico', credits: 2, hoursT: 1, hoursP: 2, cycle: 'Ciclo VIII', isElective: false }),
+  course({ id: 'CP-802', name: 'Marketing Político', type: 'especialidad', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo VIII', isElective: false }),
+  course({ id: 'CP-803', name: 'Métodos Estadísticos para la Ciencia Política', type: 'especialidad', credits: 4, hoursT: 2, hoursP: 4, cycle: 'Ciclo VIII', isElective: false }),
+  course({ id: 'CP-804', name: 'Comunicación Política', type: 'especialidad', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo VIII', isElective: false }),
+  course({ id: 'CP-805', name: 'Elaboración de Proyectos Sociales', type: 'especialidad', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo VIII', isElective: false }),
+  course({ id: 'CP-806', name: 'Práctica Preprofesional I', type: 'especifico', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo VIII', isElective: false }),
 
-  // CICLO IX
-  { id: 'ES-22', name: 'Gestión Educativa', type: 'especifico', credits: 3, hoursT: 1, hoursP: 4, cycle: 'Ciclo IX', isElective: false, description: 'Administración escolar, liderazgo directivo y documentos de gestión institucional.' },
-  { id: 'ES-23', name: 'Seminario de Tesis I', type: 'especifico', credits: 3, hoursT: 1, hoursP: 4, cycle: 'Ciclo IX', isElective: false, description: 'Elaboración y sustentación del proyecto de tesis para obtención del título.' },
-  { id: 'EP-21', name: 'Práctica Preprofesional V', type: 'especialidad', credits: 16, hoursT: 0, hoursP: 32, cycle: 'Ciclo IX', isElective: false, description: 'Inmersión total en la institución educativa asumiendo el rol docente a tiempo completo.' },
+  // CICLO IX · 22 créditos
+  course({ id: 'CP-901', name: 'Política Comparada', type: 'especifico', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo IX', isElective: false }),
+  course({ id: 'CP-902', name: 'Seminario de Tesis I', type: 'especifico', credits: 4, hoursT: 2, hoursP: 4, cycle: 'Ciclo IX', isElective: false }),
+  course({ id: 'CP-903', name: 'Práctica Preprofesional II', type: 'especifico', credits: 6, hoursT: 3, hoursP: 6, cycle: 'Ciclo IX', isElective: false }),
+  course({ id: 'CP-904', name: 'Opinión Pública', type: 'especialidad', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo IX', isElective: false }),
+  course({ id: 'CP-905', name: 'Movimientos Sociales', type: 'especialidad', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo IX', isElective: false }),
 
-  // CICLO X
-  { id: 'ES-24', name: 'Ética Profesional', type: 'especifico', credits: 3, hoursT: 4, hoursP: 1, cycle: 'Ciclo X', isElective: false, description: 'Deontología docente, valores profesionales y responsabilidad social.' },
-  { id: 'ES-25', name: 'Seminario de Tesis II', type: 'especifico', credits: 3, hoursT: 4, hoursP: 1, cycle: 'Ciclo X', isElective: false, description: 'Desarrollo, culminación y defensa de la tesis de grado.' },
-  { id: 'EP-22', name: 'Práctica Pre Profesional VI', type: 'especialidad', credits: 16, hoursT: 0, hoursP: 28, cycle: 'Ciclo X', isElective: false, description: 'Culminación de la práctica preprofesional con evaluación integral de desempeño docente.' },
+  // CICLO X · 22 créditos
+  course({ id: 'CP-1001', name: 'Seminario de Tesis II', type: 'especifico', credits: 4, hoursT: 2, hoursP: 4, cycle: 'Ciclo X', isElective: false }),
+  course({ id: 'CP-1002', name: 'Práctica Preprofesional III', type: 'especifico', credits: 5, hoursT: 2, hoursP: 6, cycle: 'Ciclo X', isElective: false, description: 'Asignatura denominada Práctica Preprofesional III en la malla curricular oficial; requiere haber aprobado Práctica Preprofesional II.' }),
+  course({ id: 'CP-1003', name: 'Gobiernos Locales y Regionales', type: 'especifico', credits: 5, hoursT: 3, hoursP: 4, cycle: 'Ciclo X', isElective: false }),
+  course({ id: 'CP-1004', name: 'Ética Profesional y Política', type: 'especialidad', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo X', isElective: false }),
+  course({ id: 'CP-1005', name: 'Poder Judicial y Judicialización de la Política', type: 'especialidad', credits: 4, hoursT: 3, hoursP: 2, cycle: 'Ciclo X', isElective: false }),
 ];
 
-// Líneas de prerrequisitos (muestra de flujos lógicos)
+const prerequisite = (source: string, target: string, index: number): Edge => ({
+  id: `prerequisite-${index}`,
+  source,
+  target,
+  type: 'smoothstep',
+  style: { stroke: '#2563eb', strokeWidth: 2 },
+});
+
+// Prerrequisitos consignados en la columna "Requisitos" del plan de estudios.
 export const PREREQUISITES_EDGES: Edge[] = [
-  { id: 'e-1', source: 'ES-1', target: 'ES-2', style: { stroke: '#f97316', strokeWidth: 2 } },
-  { id: 'e-2', source: 'ES-3', target: 'ES-5', style: { stroke: '#f97316', strokeWidth: 2 } },
-  { id: 'e-3', source: 'ES-8', target: 'EP-1', style: { stroke: '#38bdf8', strokeWidth: 2 } },
-  { id: 'e-4', source: 'EP-2', target: 'EP-4', style: { stroke: '#38bdf8', strokeWidth: 2 } },
-  { id: 'e-5', source: 'EP-3', target: 'EP-7', style: { stroke: '#38bdf8', strokeWidth: 2 } },
-  { id: 'e-6', source: 'ES-15', target: 'ES-16', style: { stroke: '#f97316', strokeWidth: 2 } },
-  { id: 'e-7', source: 'ES-16', target: 'ES-18', style: { stroke: '#f97316', strokeWidth: 2 } },
-  { id: 'e-8', source: 'ES-18', target: 'ES-20', style: { stroke: '#f97316', strokeWidth: 2 } },
-  { id: 'e-9', source: 'ES-20', target: 'ES-23', style: { stroke: '#f97316', strokeWidth: 2 } },
-  { id: 'e-10', source: 'ES-23', target: 'ES-25', style: { stroke: '#f97316', strokeWidth: 2 } },
-  { id: 'e-11', source: 'EP-5', target: 'EP-11', style: { stroke: '#38bdf8', strokeWidth: 2 } },
-  { id: 'e-12', source: 'EP-11', target: 'EP-15', style: { stroke: '#38bdf8', strokeWidth: 2 } },
-  { id: 'e-13', source: 'EP-15', target: 'EP-19', style: { stroke: '#38bdf8', strokeWidth: 2 } },
-  { id: 'e-14', source: 'EP-19', target: 'EP-21', style: { stroke: '#38bdf8', strokeWidth: 2 } },
-  { id: 'e-15', source: 'EP-21', target: 'EP-22', style: { stroke: '#38bdf8', strokeWidth: 2 } },
-];
+  ['CP-106', 'CP-207'],
+  ['CP-205', 'CP-303'],
+  ['CP-206', 'CP-305'],
+  ['CP-207', 'CP-306'],
+  ['CP-305', 'CP-404'],
+  ['CP-403', 'CP-503'],
+  ['CP-404', 'CP-504'],
+  ['CP-405', 'CP-505'],
+  ['CP-405', 'CP-602'],
+  ['CP-505', 'CP-604'],
+  ['CP-603', 'CP-702'],
+  ['CP-405', 'CP-703'],
+  ['CP-604', 'CP-704'],
+  ['CP-705', 'CP-801'],
+  ['CP-704', 'CP-802'],
+  ['CP-702', 'CP-803'],
+  ['CP-704', 'CP-804'],
+  ['CP-803', 'CP-902'],
+  ['CP-806', 'CP-903'],
+  ['CP-804', 'CP-904'],
+  ['CP-902', 'CP-1001'],
+  ['CP-903', 'CP-1002'],
+  ['CP-505', 'CP-1003'],
+].map(([source, target], index) => prerequisite(source, target, index + 1));
 
 export const CYCLE_COLUMNS: Record<string, number> = {
-  'Ciclo I': 0, 'Ciclo II': 320, 'Ciclo III': 640, 'Ciclo IV': 960, 'Ciclo V': 1280,
-  'Ciclo VI': 1600, 'Ciclo VII': 1920, 'Ciclo VIII': 2240, 'Ciclo IX': 2560, 'Ciclo X': 2880,
+  'Ciclo I': 0,
+  'Ciclo II': 320,
+  'Ciclo III': 640,
+  'Ciclo IV': 960,
+  'Ciclo V': 1280,
+  'Ciclo VI': 1600,
+  'Ciclo VII': 1920,
+  'Ciclo VIII': 2240,
+  'Ciclo IX': 2560,
+  'Ciclo X': 2880,
 };

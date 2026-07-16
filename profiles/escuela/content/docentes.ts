@@ -4,120 +4,111 @@
 //   - cursoPrincipal: el curso/área principal que aparece en el FRENTE de la card
 //   - especialidades: lista que aparece al voltear la card (reverso). Agrega 2-3 por docente.
 //   - foto: ruta de la foto o null (muestra silueta placeholder)
-//   - investigador: true si el docente es investigador (habilita el filtro "Investigadores")
-//   - categoriaInvestigacion: categoría/nivel de investigación (p. ej. RENACYT). Solo aplica
-//     si investigador === true; se muestra como distintivo en la card.
-//   - condicion: régimen laboral del docente, "Nombrado" o "Contratado". Se muestra como
-//     etiqueta en la card.
-export const docentes = [
+import melissaDiaz from "../assets/docentes/MELISSA_DIAZ.webp";
+import rafaelAldave from "../assets/docentes/RAFAEL_ALDAVE.webp";
+import lalyMachado from "../assets/docentes/LALY_MACHADO.webp";
+import eduardoRomero from "../assets/docentes/EDUARDO_ROMERO.webp";
+import carlosTrujillo from "../assets/docentes/CARLOS_TRUJILLO.webp";
+import luisRios from "../assets/docentes/LUIS_RIOS.webp";
+import santiagoLopez from "../assets/docentes/SANTIAGO_LOPEZ.webp";
+
+const docentesBase = [
   {
-    nombre: "Nombre del Docente 1",
-    grado: "Doctor",
-    departamento: "Departamento Académico 1",
-    cursoPrincipal: "Curso o área principal",
-    especialidades: ["Especialidad 1", "Especialidad 2", "Especialidad 3"],
-    foto: null,
-    investigador: true,
-    categoriaInvestigacion: "RENACYT · Nivel I",
-    condicion: "Nombrado"
-  },
-  {
-    nombre: "Nombre del Docente 2",
+    nombre: "Dra. Melissa Fiorella Diaz Cabrera",
     grado: "Doctora",
-    departamento: "Departamento Académico 1",
-    cursoPrincipal: "Curso o área principal",
-    especialidades: ["Especialidad 1", "Especialidad 2"],
-    foto: null,
-    investigador: false,
-    categoriaInvestigacion: null,
-    condicion: "Nombrado"
+    cursoPrincipal: "Calidad y Gestión Universitaria",
+    especialidades: [
+      "Aseguramiento de la calidad",
+      "Gestión educativa",
+      "Evaluación institucional",
+    ],
+    foto: melissaDiaz,
   },
   {
-    nombre: "Nombre del Docente 3",
-    grado: "Magíster",
-    departamento: "Departamento Académico 1",
-    cursoPrincipal: "Curso o área principal",
-    especialidades: ["Especialidad 1", "Especialidad 2"],
-    foto: null,
-    investigador: false,
-    categoriaInvestigacion: null,
-    condicion: "Contratado"
-  },
-  {
-    nombre: "Nombre del Docente 4",
-    grado: "Doctor",
-    departamento: "Departamento Académico 1",
-    cursoPrincipal: "Curso o área principal",
-    especialidades: ["Especialidad 1", "Especialidad 2"],
-    foto: null,
-    investigador: true,
-    categoriaInvestigacion: "RENACYT · Nivel II",
-    condicion: "Nombrado"
-  },
-  {
-    nombre: "Nombre del Docente 5",
-    grado: "Magíster",
-    departamento: "Departamento Académico 2",
-    cursoPrincipal: "Curso o área principal",
-    especialidades: ["Especialidad 1", "Especialidad 2"],
-    foto: null,
-    investigador: false,
-    categoriaInvestigacion: null,
-    condicion: "Contratado"
-  },
-  {
-    nombre: "Nombre del Docente 6",
+    nombre: "Dra. Laly Ruth Machado Larriviere",
     grado: "Doctora",
-    departamento: "Departamento Académico 2",
-    cursoPrincipal: "Curso o área principal",
-    especialidades: ["Especialidad 1", "Especialidad 2", "Especialidad 3"],
-    foto: null,
-    investigador: true,
-    categoriaInvestigacion: "RENACYT · Nivel III",
-    condicion: "Nombrado"
+    cursoPrincipal: "Teoría Política",
+    especialidades: [
+      "Pensamiento político",
+      "Instituciones políticas",
+      "Democracia contemporánea",
+    ],
+    foto: lalyMachado,
   },
   {
-    nombre: "Nombre del Docente 7",
+    nombre: "Mg. Eduardo Romero La Torre",
     grado: "Magíster",
-    departamento: "Departamento Académico 2",
-    cursoPrincipal: "Curso o área principal",
-    especialidades: ["Especialidad 1", "Especialidad 2"],
-    foto: null,
-    investigador: false,
-    categoriaInvestigacion: null,
-    condicion: "Contratado"
+    cursoPrincipal: "Políticas Públicas",
+    especialidades: [
+      "Diseño de políticas públicas",
+      "Gestión estatal",
+      "Análisis de programas públicos",
+    ],
+    foto: eduardoRomero,
   },
   {
-    nombre: "Nombre del Docente 8",
-    grado: "Doctor",
-    departamento: "Departamento Académico 2",
-    cursoPrincipal: "Curso o área principal",
-    especialidades: ["Especialidad 1", "Especialidad 2"],
-    foto: null,
-    investigador: true,
-    categoriaInvestigacion: "RENACYT · Nivel I",
-    condicion: "Nombrado"
+    nombre: "Mg. Santiago Manuel Lopez Valverde",
+    grado: "Magíster",
+    cursoPrincipal: "Relaciones Internacionales",
+    especialidades: [
+      "Política internacional",
+      "Integración regional",
+      "Geopolítica",
+    ],
+    foto: santiagoLopez,
   },
   {
-    nombre: "Nombre del Docente 9",
-    grado: "Doctor",
-    departamento: "Departamento Académico 2",
-    cursoPrincipal: "Curso o área principal",
-    especialidades: ["Especialidad 1", "Especialidad 2"],
-    foto: null,
-    investigador: true,
-    categoriaInvestigacion: "RENACYT · Nivel IV",
-    condicion: "Nombrado"
+    nombre: "Mg. Luis Enrique Rios Alba",
+    grado: "Magíster",
+    cursoPrincipal: "Administración Pública",
+    especialidades: [
+      "Modernización del Estado",
+      "Gestión pública",
+      "Desarrollo territorial",
+    ],
+    foto: luisRios,
   },
   {
-    nombre: "Nombre del Docente 10",
-    grado: "Doctor",
-    departamento: "Departamento Académico 1",
-    cursoPrincipal: "Curso o área principal",
-    especialidades: ["Especialidad 1", "Especialidad 2"],
+    nombre: "Mg. Rafael Fernando Aldave Herrera",
+    grado: "Magíster",
+    cursoPrincipal: "Gobierno y Participación Ciudadana",
+    especialidades: [
+      "Participación ciudadana",
+      "Gobierno local",
+      "Descentralización",
+    ],
+    foto: rafaelAldave,
+  },
+  {
+    nombre: "Mg. Carlos Cesar Trujillo Vega",
+    grado: "Magíster",
+    cursoPrincipal: "Análisis Político",
+    especialidades: [
+      "Sistemas políticos",
+      "Opinión pública",
+      "Comportamiento electoral",
+    ],
+    foto: carlosTrujillo,
+  },
+  {
+    nombre: "Mg. Julisa Bazan Cayetano",
+    grado: "Magíster",
+    cursoPrincipal: "Manejo y Resolución de Conflictos",
+    especialidades: [
+      "Gestión de conflictos",
+      "Negociación",
+      "Gobernanza territorial",
+    ],
     foto: null,
-    investigador: false,
-    categoriaInvestigacion: null,
-    condicion: "Contratado"
-  }
+  },
 ];
+
+// Campos incorporados por la plantilla actualizada. Se centralizan aquí para
+// conservar la información real de la Escuela y habilitar sus nuevos filtros.
+export const docentes = docentesBase.map((docente) => ({
+  ...docente,
+  departamento: "Ciencia Política y Gobernabilidad",
+  investigador: false,
+  categoriaInvestigacion: null,
+  condicion: null,
+}));
