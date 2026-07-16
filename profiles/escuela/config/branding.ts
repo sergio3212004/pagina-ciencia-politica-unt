@@ -7,9 +7,12 @@ import logoUniversidad from "../assets/logo-universidad.png";
 import logoEscuela from "../assets/logo-escuela.webp";
 import logoBolsa from "../assets/logo-bolsa-trabajo.png";
 import libroReclamaciones from "../assets/libro-reclamaciones.svg";
-import hero1 from "../assets/hero/hero-1.jpeg";
-import hero2 from "../assets/hero/hero-2.jpg";
-import hero3 from "../assets/hero/hero-3.jpg";
+import generalFacultad from "../assets/hero/general-facultad.webp";
+import estudiantesCampus from "../assets/hero/estudiantes-campus.webp";
+import generalJardin from "../assets/hero/general-jardin.webp";
+import estudiantesAula from "../assets/hero/estudiantes-aula.webp";
+import generalCampus from "../assets/hero/general-campus.webp";
+import estudiantesClase from "../assets/hero/estudiantes-clase.webp";
 
 export const branding: BrandingConfig = {
   logos: {
@@ -18,7 +21,14 @@ export const branding: BrandingConfig = {
     bolsaTrabajo: logoBolsa,
     libroReclamaciones,
   },
-  heroImages: [hero1, hero2, hero3],
+  heroImages: [
+    generalFacultad,
+    estudiantesCampus,
+    generalJardin,
+    estudiantesAula,
+    generalCampus,
+    estudiantesClase,
+  ],
   alt: {
     universidad: "Universidad Nacional de Trujillo",
     escuela: "Ciencia Política y Gobernabilidad",
