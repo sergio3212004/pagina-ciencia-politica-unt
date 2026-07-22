@@ -86,6 +86,19 @@ export const NAV_LINKS: NavSection[] = [
           { name: 'Movilidad', path: '/academico/movilidad' },
         ],
       },
+      {
+        label: 'Egresados',
+        items: [
+          {
+            name: 'Grados, títulos y colación',
+            path: '/academico/titulacion',
+            navAs: [
+              { name: 'Grados y títulos', path: '/academico/titulacion' },
+              { name: 'Carpeta para colaciones', path: '/academico/titulacion#colacion' },
+            ],
+          },
+        ],
+      },
     ],
   },
   {
