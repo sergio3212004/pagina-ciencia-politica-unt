@@ -1,7 +1,7 @@
 import React from 'react';
 import AnchoredSection from '../../components/layout/AnchoredSection';
-import EnConstruccion from '../../components/layout/EnConstruccion';
 import Proyectos from './Proyectos';
+import Tesis from './Tesis';
 
 /**
  * Página agrupada "Proyectos". El navbar muestra "Proyectos de investigación" y
@@ -14,7 +14,7 @@ export default function ProyectosGrupo() {
         <Proyectos />
       </AnchoredSection>
       <AnchoredSection id="tesis">
-        <EnConstruccion titulo="Proyectos y **tesis**" bg="bg-gray-50" />
+        <Tesis />
       </AnchoredSection>
     </>
   );

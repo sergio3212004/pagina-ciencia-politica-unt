@@ -1,7 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FileCheck2 } from 'lucide-react';
 import { SectionTitle } from '../../components/ui/SectionTitle';
-import { lineasInvestigacion } from '@profile/content/investigacion';
+import {
+  lineasInvestigacion,
+  resolucionLineasInvestigacion,
+} from '@profile/content/investigacion';
 
 export default function Lineas() {
   return (
@@ -9,11 +13,26 @@ export default function Lineas() {
       <div className="container mx-auto px-4 md:px-8">
         <SectionTitle
           title="Líneas de **Investigación**"
-          subtitle="Áreas prioritarias para la generación de conocimiento e innovación ambiental."
+          subtitle="Áreas oficiales de investigación de la Escuela Profesional de Ciencia Política y Gobernabilidad."
           center
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mt-12">
+        <div className="max-w-4xl mx-auto mt-10 flex items-start gap-4 rounded-2xl border border-gold/25 bg-white p-5 md:p-6 shadow-sm">
+          <div className="shrink-0 rounded-xl bg-primary p-3 text-gold">
+            <FileCheck2 className="h-6 w-6" aria-hidden="true" />
+          </div>
+          <div>
+            <p className="font-display font-bold text-primary">
+              {resolucionLineasInvestigacion.numero}
+            </p>
+            <p className="mt-1 text-sm leading-relaxed text-gray-600">
+              Aprobada el {resolucionLineasInvestigacion.fecha}. Las líneas se encuentran
+              categorizadas como emergentes.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mt-8">
           {lineasInvestigacion.map((linea, idx) => (
             <motion.div
               key={idx}
@@ -42,18 +61,10 @@ export default function Lineas() {
                 </div>
 
                 {/* Contenido */}
-                <div className="p-6 flex flex-col flex-1">
-                  <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-5">
-                    {linea.descripcion}
+                <div className="p-6 flex flex-1 items-center">
+                  <p className="inline-flex rounded-full border border-gold/20 bg-gold/5 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.15em] text-gold">
+                    {resolucionLineasInvestigacion.categoria}
                   </p>
-                  <div className="bg-gray-50 rounded-xl p-4">
-                    <span className="block text-[10px] font-black uppercase tracking-[0.15em] text-gray-600 mb-1">
-                      Responsable de línea
-                    </span>
-                    <span className="text-sm font-bold text-primary">
-                      {linea.responsable}
-                    </span>
-                  </div>
                 </div>
               </div>
             </motion.div>

@@ -4,6 +4,8 @@
 //   - cursoPrincipal: el curso/área principal que aparece en el FRENTE de la card
 //   - especialidades: lista que aparece al voltear la card (reverso). Agrega 2-3 por docente.
 //   - foto: ruta de la foto o null (muestra silueta placeholder)
+//   - fotoPosicion: encuadre CSS opcional (p. ej. "center 35%"). Si se omite,
+//     la tarjeta usa "center 25%"; ajusta este dato para subir o bajar cada foto.
 import melissaDiaz from "../assets/docentes/MELISSA_DIAZ.webp";
 import rafaelAldave from "../assets/docentes/RAFAEL_ALDAVE.webp";
 import lalyMachado from "../assets/docentes/LALY_MACHADO.webp";
@@ -19,9 +21,8 @@ const docentesBase = [
     grado: "Doctora",
     cursoPrincipal: "Calidad y Gestión Universitaria",
     especialidades: [
-      "Aseguramiento de la calidad",
-      "Gestión educativa",
-      "Evaluación institucional",
+      "Derecho constitucional",
+      "Derecho civil empresarial",
     ],
     foto: melissaDiaz,
   },
@@ -30,9 +31,9 @@ const docentesBase = [
     grado: "Doctora",
     cursoPrincipal: "Teoría Política",
     especialidades: [
-      "Pensamiento político",
-      "Instituciones políticas",
-      "Democracia contemporánea",
+      "Gestión pública y gobernabilidad",
+      "Administración de la educación",
+      "Educación secundaria en ciencias sociales",
     ],
     foto: lalyMachado,
   },
@@ -41,9 +42,8 @@ const docentesBase = [
     grado: "Magíster",
     cursoPrincipal: "Políticas Públicas",
     especialidades: [
-      "Diseño de políticas públicas",
-      "Gestión estatal",
-      "Análisis de programas públicos",
+      "Derecho constitucional",
+      "Derecho administrativo",
     ],
     foto: eduardoRomero,
   },
@@ -52,9 +52,8 @@ const docentesBase = [
     grado: "Magíster",
     cursoPrincipal: "Relaciones Internacionales",
     especialidades: [
-      "Política internacional",
-      "Integración regional",
-      "Geopolítica",
+      "Derecho tributario",
+      "Antropología social",
     ],
     foto: santiagoLopez,
   },
@@ -63,9 +62,8 @@ const docentesBase = [
     grado: "Magíster",
     cursoPrincipal: "Administración Pública",
     especialidades: [
-      "Modernización del Estado",
-      "Gestión pública",
-      "Desarrollo territorial",
+      "Derecho constitucional",
+      "Derecho administrativo",
     ],
     foto: luisRios,
   },
@@ -74,9 +72,8 @@ const docentesBase = [
     grado: "Magíster",
     cursoPrincipal: "Gobierno y Participación Ciudadana",
     especialidades: [
-      "Participación ciudadana",
-      "Gobierno local",
-      "Descentralización",
+      "Gestión pública",
+      "Políticas públicas",
     ],
     foto: rafaelAldave,
   },
@@ -85,9 +82,8 @@ const docentesBase = [
     grado: "Magíster",
     cursoPrincipal: "Análisis Político",
     especialidades: [
-      "Sistemas políticos",
-      "Opinión pública",
-      "Comportamiento electoral",
+      "Derecho constitucional",
+      "Derecho administrativo",
     ],
     foto: carlosTrujillo,
   },
@@ -96,9 +92,9 @@ const docentesBase = [
     grado: "Magíster",
     cursoPrincipal: "Manejo y Resolución de Conflictos",
     especialidades: [
-      "Gestión de conflictos",
-      "Negociación",
-      "Gobernanza territorial",
+      "Gobernanza global",
+      "Derechos humanos",
+      "Gobernabilidad y cultura de paz",
     ],
     foto: julissaBazan,
   },

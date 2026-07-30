@@ -2,21 +2,24 @@ import dialogosPoliticosImage from '../assets/revistas/dialogos-politicos.webp';
 
 export const lineasInvestigacion = [
   {
-    nombre: "Línea de investigación 1",
-    descripcion: "Descripción breve de la primera línea de investigación del programa.",
-    responsable: "Nombre del Responsable"
+    nombre: "Políticas Públicas y Gestión Pública",
   },
   {
-    nombre: "Línea de investigación 2",
-    descripcion: "Descripción breve de la segunda línea de investigación del programa.",
-    responsable: "Nombre del Responsable"
+    nombre: "Democracia y Partidos Políticos",
   },
   {
-    nombre: "Línea de investigación 3",
-    descripcion: "Descripción breve de la tercera línea de investigación del programa.",
-    responsable: "Nombre del Responsable"
-  }
+    nombre: "Política Comparada y Relaciones Internacionales",
+  },
+  {
+    nombre: "Gobernabilidad y Manejo de Conflictos",
+  },
 ];
+
+export const resolucionLineasInvestigacion = {
+  numero: "Resolución Directoral de Escuela de Ciencia Política y Gobernabilidad N.º 022-2022",
+  fecha: "8 de junio de 2022",
+  categoria: "Líneas de investigación emergentes",
+};
 
 export const proyectos = [
   {

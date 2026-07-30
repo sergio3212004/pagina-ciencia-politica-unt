@@ -4,10 +4,11 @@ import { motion } from 'framer-motion';
 import PageWrapper from '../components/layout/PageWrapper';
 import { SectionTitle } from '../components/ui/SectionTitle';
 import { Card } from '../components/ui/Card';
-import { GraduationCap, ArrowRight, Calendar, ShieldCheck, User, Play } from 'lucide-react';
+import { GraduationCap, ArrowRight, Calendar, ShieldCheck } from 'lucide-react';
 import { site, branding } from '@/profile';
 import { noticias } from '@profile/content/noticias';
 import { accesosRapidos, ambientes } from '@profile/content/home';
+import fotoDecano from '@profile/assets/autoridades/decano-segundo-rodriguez-alban.webp';
 import useHeaderHeight from '../hooks/useHeaderHeight';
 
 export default function Inicio() {
@@ -242,70 +243,42 @@ export default function Inicio() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════
-          BIENVENIDA / VIDEO
-          ══════════════════════════════════════════ */}
-
+      {/* Decano de la Facultad */}
       <section className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
-            {/* Columna de Texto */}
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+          <div className="mx-auto max-w-5xl">
+            <SectionTitle title="Decano de la **Facultad**" center />
+
+            <motion.article
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="flex flex-col"
+              className="mt-10 grid overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl md:grid-cols-[minmax(0,1.1fr)_minmax(300px,0.9fr)]"
             >
-              <SectionTitle title="Bienvenida de la **Decana**" />
-
-              <div className="text-gray-700 font-body space-y-4 leading-relaxed">
-                <p>«{site.decana.mensaje}»</p>
-                <footer className="text-sm text-gray-600 not-italic font-semibold">
-                  {site.decana.nombre}, {site.decana.cargo}
-                </footer>
-              </div>
-            </motion.div>
-
-            {/* Columna de Video */}
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="w-full rounded-xl overflow-hidden shadow-2xl relative border-4 border-gray-50"
-              style={{ paddingTop: '56.25%' }}
-            >
-              {site.decana.video.youtubeId ? (
-                <iframe
-                  className="absolute top-0 left-0 w-full h-full border-0"
-                  src={`https://www.youtube-nocookie.com/embed/${site.decana.video.youtubeId}${site.decana.video.start ? `?start=${site.decana.video.start}` : ''}`}
-                  title={`Video Institucional · ${site.programa.nombre}`}
+              <div className="aspect-square overflow-hidden bg-gray-100 md:aspect-auto">
+                <img
+                  src={fotoDecano}
+                  alt={`Dr. Segundo Miguel Rodríguez Alban, ${site.decana.cargo}`}
+                  width={1024}
+                  height={1030}
                   loading="lazy"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              ) : (
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-primary/5 text-primary text-center px-6">
-                  {/* Retrato silueta + sello de video: transmite "aquí te da la bienvenida una persona" aun sin datos */}
-                  <div className="relative">
-                    <div className="w-24 h-24 rounded-full bg-white border border-primary/10 shadow-sm flex items-end justify-center overflow-hidden">
-                      <User className="w-20 h-20 text-primary/20 -mb-1" aria-hidden="true" />
-                    </div>
-                    <span className="absolute -bottom-1 -right-1 w-9 h-9 rounded-full bg-gold flex items-center justify-center shadow-md">
-                      <Play className="w-4 h-4 text-primary fill-primary translate-x-[1px]" aria-hidden="true" />
-                    </span>
-                  </div>
-                  <div>
-                    <p className="font-display font-bold text-sm">Mensaje de bienvenida del decano(a)</p>
-                    <p className="text-xs text-primary/80 mt-1">Agrega su foto o el video en el perfil (site.decana.video).</p>
-                  </div>
-                </div>
-              )}
-            </motion.div>
-
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="flex flex-col justify-center bg-primary p-8 text-white md:p-12">
+                <div className="mb-6 h-1 w-14 rounded-full bg-gold" />
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-gold">
+                  Decano
+                </p>
+                <h3 className="mt-3 font-display text-2xl font-black leading-tight md:text-3xl">
+                  {site.decana.nombre}
+                </h3>
+                <p className="mt-4 text-sm leading-relaxed text-white/75 md:text-base">
+                  {site.decana.cargo}
+                </p>
+              </div>
+            </motion.article>
           </div>
         </div>
       </section>

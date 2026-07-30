@@ -1,12 +1,15 @@
 import enaCarnero from "../assets/docentes/ENA_CARNERO.webp";
 import marielaGutierrez from "../assets/docentes/MARIELA_GUTIERREZ.webp";
 
+// `fotoPosicion` permite ajustar el encuadre de cada retrato sin modificar los
+// componentes (p. ej. "center 35%"). Si se omite, se usa "center 25%".
 export const director = {
   nombre: "Dra. Ena Carnero",
   cargo: "Directora de Escuela",
   correo: "",
   bio: "Directora de la Escuela Profesional de Ciencia Política y Gobernabilidad.",
   foto: enaCarnero,
+  fotoPosicion: "center 25%",
 };
 
 export const administrativos = [
@@ -15,6 +18,7 @@ export const administrativos = [
     cargo: "Secretaria de Escuela",
     correo: "",
     foto: marielaGutierrez,
+    fotoPosicion: "center 25%",
   },
 ];
 

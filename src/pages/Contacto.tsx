@@ -44,7 +44,12 @@ export default function Contacto() {
                   <div className="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center shrink-0 text-primary"><Mail className="w-5 h-5" /></div>
                   <div>
                     <h4 className="font-bold text-gray-900 text-sm mb-1 uppercase tracking-wider">Correo Institucional</h4>
-                    <p className="text-gray-600 text-sm">{informacionContacto.correo}</p>
+                    <a
+                      href={`mailto:${informacionContacto.correo}`}
+                      className="text-sm text-gray-600 transition-colors hover:text-primary hover:underline"
+                    >
+                      {informacionContacto.correo}
+                    </a>
                   </div>
                 </div>
               </div>

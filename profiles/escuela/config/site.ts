@@ -74,12 +74,9 @@ export const site: SiteConfig = {
   ],
 
   decana: {
-    nombre: "Nombre del Decano(a)",
-    cargo: "Decano(a) de la Nombre de la Escuela/Carrera Profesional",
-    mensaje:
-      "Mensaje de bienvenida del decano(a). Aquí va un párrafo que recibe a los visitantes y resume el espíritu del programa. Reemplazar por texto real del decano(a) de tu programa.",
-    // ID del video de YouTube para el mensaje de bienvenida. Déjalo vacío hasta
-    // tener el video de tu programa; al ponerlo, el reproductor aparece solo.
+    nombre: "Dr. Segundo Miguel Rodríguez Alban",
+    cargo: "Decano de la Facultad de Derecho y Ciencias Políticas",
+    mensaje: "",
     video: { youtubeId: "", start: 0 },
   },
 

@@ -14,6 +14,7 @@ interface Docente {
   nombre: string;
   cursoPrincipal: string;
   foto?: string | null;
+  fotoPosicion?: string;
   especialidades?: string[];
   investigador?: boolean;
   categoriaInvestigacion?: string | null;
@@ -33,32 +34,32 @@ export default function DocenteCard({ docente }: { docente: Docente }) {
       transition={{ duration: 0.3 }}
       tabIndex={0}
       aria-label={`${docente.grado} ${docente.nombre}. Curso principal: ${docente.cursoPrincipal}. Enfoca o pasa el cursor para ver sus especialidades.`}
-      className="group h-[340px] rounded-2xl outline-none [perspective:1200px] focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+      className="group h-[380px] rounded-2xl outline-none [perspective:1200px] focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
     >
       <div className="relative h-full w-full transition-transform duration-1000 ease-out [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] group-focus-visible:[transform:rotateY(180deg)]">
 
         {/* ── FRENTE ── */}
-        <div className="absolute inset-0 [backface-visibility:hidden] bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
-          {/* Franja superior con avatar */}
-          <div className="relative bg-primary pt-8 pb-12 flex justify-center items-end shrink-0">
-            <div className="absolute inset-0 opacity-[0.06]"
-              style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '16px 16px' }}
-            />
-            <div className="relative w-24 h-28 bg-white overflow-hidden border-4 border-white/20 shadow-xl rounded-sm">
-              {docente.foto ? (
-                <img src={docente.foto} alt={docente.nombre} loading="lazy" className="w-full h-full object-cover" />
-              ) : (
-                <div className="w-full h-full bg-gray-100 flex items-end justify-center">
-                  <User className="w-20 h-20 text-gray-300 -mb-2" />
-                </div>
-              )}
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+        <div className="absolute inset-0 [backface-visibility:hidden] bg-white rounded-2xl shadow-sm overflow-hidden flex flex-col">
+          {/* Foto con encuadre configurable desde los datos del perfil. */}
+          <div className="relative h-52 shrink-0 overflow-hidden rounded-t-2xl border-2 border-primary bg-gray-100">
+            {docente.foto ? (
+              <img
+                src={docente.foto}
+                alt={docente.nombre}
+                loading="lazy"
+                className="h-full w-full object-cover"
+                style={{ objectPosition: docente.fotoPosicion ?? 'center 25%' }}
+              />
+            ) : (
+              <div className="flex h-full w-full items-end justify-center bg-gray-100">
+                <User className="h-32 w-32 -mb-3 text-gray-300" />
+              </div>
+            )}
           </div>
 
           {/* Cargo · línea separadora · nombre · curso principal */}
-          <div className="flex flex-col flex-1 p-5 text-center justify-center">
-            <p className="text-gold text-[10px] font-black uppercase tracking-[0.2em]">
+          <div className="flex flex-1 flex-col justify-start px-4 pb-4 pt-5 text-center">
+            <p className="text-gold text-[10px] font-black uppercase tracking-[0.08em]">
               {docente.grado}
             </p>
             <div className="border-t border-gray-100 my-3" />
@@ -74,7 +75,7 @@ export default function DocenteCard({ docente }: { docente: Docente }) {
         {/* ── REVERSO ── */}
         <div className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden] bg-primary rounded-2xl shadow-lg overflow-hidden flex flex-col p-5 text-white">
           <div className="text-center shrink-0">
-            <p className="text-gold text-[10px] font-black uppercase tracking-[0.2em]">
+            <p className="text-gold text-[10px] font-black uppercase tracking-[0.08em]">
               {docente.grado}
             </p>
             <h4 className="font-display font-bold text-sm leading-tight mt-1">

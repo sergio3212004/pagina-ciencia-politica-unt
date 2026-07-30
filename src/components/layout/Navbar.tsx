@@ -16,8 +16,21 @@ export default function Navbar() {
   // Sección con el mega-menú abierto (hover/foco). Solo para semántica ARIA:
   // la visibilidad sigue siendo CSS (group-hover / group-focus-within).
   const [openSection, setOpenSection] = useState<string | null>(null);
+  const [dropdownMaxHeight, setDropdownMaxHeight] = useState<number | undefined>();
   const location = useLocation();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Ajusta cada desplegable al espacio que realmente queda bajo su enlace.
+  // Es importante en laptops y pantallas bajas, donde "Organización" puede
+  // contener más opciones que la altura disponible.
+  const openDesktopSection = (
+    sectionName: string,
+    trigger: HTMLElement,
+  ) => {
+    const spaceBelow = window.innerHeight - trigger.getBoundingClientRect().bottom - 8;
+    setDropdownMaxHeight(Math.max(1, spaceBelow));
+    setOpenSection(sectionName);
+  };
 
   // Cierra el drawer móvil y devuelve el foco al botón que lo abrió.
   const closeMenu = () => {
@@ -83,10 +96,13 @@ export default function Navbar() {
               <Phone className="w-4 h-4" />
               {informacionContacto.telefonos[0]}
             </span>
-            <span className="flex items-center gap-1.5 hover:text-gold transition-colors cursor-pointer">
+            <a
+              href={`mailto:${informacionContacto.correo}`}
+              className="flex items-center gap-1.5 transition-colors hover:text-gold"
+            >
               <Mail className="w-4 h-4" />
               {informacionContacto.correo}
-            </span>
+            </a>
           </div>
           <div className="flex items-center">
             <div className="relative group flex items-center">
@@ -139,9 +155,9 @@ export default function Navbar() {
               <div
                 key={link.name}
                 className="relative group h-full flex"
-                onMouseEnter={() => link.groups && setOpenSection(link.name)}
+                onMouseEnter={(e) => link.groups && openDesktopSection(link.name, e.currentTarget)}
                 onMouseLeave={() => setOpenSection((s) => (s === link.name ? null : s))}
-                onFocus={() => link.groups && setOpenSection(link.name)}
+                onFocus={(e) => link.groups && openDesktopSection(link.name, e.currentTarget)}
                 onBlur={(e) => {
                   if (!e.currentTarget.contains(e.relatedTarget)) {
                     setOpenSection((s) => (s === link.name ? null : s));
@@ -173,10 +189,13 @@ export default function Navbar() {
                     desplegable original: cuadrado, shadow-lg, sin borde. Los de la
                     mitad derecha se anclan a la derecha para no salirse de pantalla. */}
                 {link.groups && (
-                  <div className={clsx(
-                    'absolute top-full bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity duration-200 z-50',
-                    idx >= 3 ? 'right-0' : 'left-0'
-                  )}>
+                  <div
+                    style={{ maxHeight: dropdownMaxHeight }}
+                    className={clsx(
+                      'absolute top-full bg-white shadow-lg overflow-y-auto overscroll-contain opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity duration-200 z-50',
+                      idx >= 3 ? 'right-0' : 'left-0'
+                    )}
+                  >
                     <div className="flex flex-wrap gap-x-2 gap-y-4 p-4 max-w-[min(720px,90vw)]">
                       {link.groups.map((grupo) => (
                         <div key={grupo.label} className="min-w-[200px] flex-1">
@@ -260,7 +279,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', ease: [0.4, 0, 0.2, 1], duration: 0.3 }}
-              className="fixed top-0 right-0 z-50 h-[100dvh] w-[85vw] max-w-sm bg-white shadow-2xl flex flex-col"
+              className="fixed inset-y-0 right-0 z-50 h-screen h-[100dvh] w-[85vw] max-w-sm bg-white shadow-2xl flex flex-col overflow-hidden"
             >
               {/* Cabecera: solo el control de cierre */}
               <div className="flex items-center justify-end px-5 h-16 border-b border-gray-100 shrink-0">
@@ -278,7 +297,7 @@ export default function Navbar() {
               {/* Contenido scrollable */}
               <nav
                 aria-label="Menú principal"
-                className="flex-1 overflow-y-auto overscroll-contain px-5 py-5 flex flex-col gap-5"
+                className="min-h-0 flex-1 overflow-y-auto overscroll-contain touch-pan-y px-5 pt-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] flex flex-col gap-5 [-webkit-overflow-scrolling:touch]"
               >
                 {NAV_LINKS.map((link) => (
                   <div key={link.name} className="flex flex-col">

@@ -1,7 +1,7 @@
 export const informacionContacto = {
   direccion: "Dirección del programa: pabellón, facultad y campus universitario.",
   telefonos: ["(00) 000-0000 Anexo: 000", "+51 000 000 000"],
-  correo: "contacto@universidad.edu.pe",
+  correo: "politica@unitru.edu.pe",
   horarioAtencion: "Lunes a Viernes: 00:00 a 00:00 hrs",
   // Mapa de ubicación: pega aquí la URL "embed" de Google Maps de tu programa
   // (Compartir → Insertar un mapa → copia el atributo src del iframe).
