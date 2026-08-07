@@ -1,13 +1,15 @@
 // Forma: ver profiles/escuela/content/contacto.ts
 export const informacionContacto = {
   direccion: '',
-  telefonos: [] as string[],
   correo: '',
   horarioAtencion: '',
   // URL "embed" de Google Maps (Compartir → Insertar un mapa → atributo src).
   mapaEmbedUrl: '',
   mapaTitulo: '',
 };
+
+// Correos de autoridades y personal de la Escuela.
+export const correoEquipo: Array<{ cargo: string; nombre: string; correo: string }> = [];
 
 export const redesSociales = {
   facebook: '',

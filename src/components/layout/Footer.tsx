@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Clock, ExternalLink, BookOpen } from 'lucide-react';
+import { Mail, MapPin, Clock, ExternalLink, BookOpen } from 'lucide-react';
 import { informacionContacto, redesSociales } from '@profile/content/contacto';
 import { socialIcons, socialLabels } from '../icons/social';
 import { site, branding } from '@/profile';
@@ -85,10 +85,6 @@ export default function Footer() {
                 <li className="flex gap-3 text-gray-300 text-sm items-start">
                   <MapPin className="w-4 h-4 text-gold shrink-0 mt-0.5" />
                   <span>{informacionContacto.direccion}</span>
-                </li>
-                <li className="flex gap-3 text-gray-300 text-sm items-center">
-                  <Phone className="w-4 h-4 text-gold shrink-0" />
-                  <span>{informacionContacto.telefonos.join(' / ')}</span>
                 </li>
                 <li className="flex gap-3 text-sm items-start">
                   <Mail className="w-4 h-4 text-gold shrink-0 mt-0.5" />

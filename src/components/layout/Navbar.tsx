@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
-import { Phone, Mail, Search, ChevronDown, Menu, X, ExternalLink } from 'lucide-react';
+import { Mail, Search, ChevronDown, Menu, X, ExternalLink } from 'lucide-react';
 import { site, branding } from '@/profile';
 import { informacionContacto } from '@profile/content/contacto';
 import Breadcrumbs from './Breadcrumbs';
@@ -92,10 +92,6 @@ export default function Navbar() {
         <div className="container mx-auto px-4 md:px-8 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0">
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 md:gap-8">
             <span className="font-semibold text-white">¿Tienes alguna duda?</span>
-            <span className="flex items-center gap-1.5 hover:text-gold transition-colors cursor-pointer">
-              <Phone className="w-4 h-4" />
-              {informacionContacto.telefonos[0]}
-            </span>
             <a
               href={`mailto:${informacionContacto.correo}`}
               className="flex items-center gap-1.5 transition-colors hover:text-gold"

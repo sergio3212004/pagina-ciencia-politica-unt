@@ -28,14 +28,13 @@ export const site: SiteConfig = {
   // Wordmark del navbar: se muestra en dos líneas (línea 1 en azul, línea 2 en dorado).
   wordmark: { linea1: "Ciencia", linea2: "Política" },
 
-  tagline:
-    "Lema o frase que resume el propósito del programa de estudios en una línea. Reemplázalo por el de tu programa.",
+  tagline: "Formando líderes para una sociedad democrática y sostenible.",
 
   hero: {
     eyebrow: "Programa de Estudios de",
     titulo: { linea1: "Ciencia", linea2: "Política" },
     descripcion:
-      "Descripción breve del programa de estudios para el hero: a quién forma y con qué enfoque. Reemplaza este texto por el de tu programa.",
+      "La Escuela Profesional de Ciencia Política forma profesionales con sólida preparación humanística, científica y ética, capaces de comprender, investigar y analizar los fenómenos políticos con pensamiento crítico, ejercer un liderazgo responsable y contribuir al fortalecimiento de la democracia, la gobernanza y el desarrollo sostenible de la región y del país.",
     ctas: {
       primary: {
         label: "Ver Plan de Estudios",
