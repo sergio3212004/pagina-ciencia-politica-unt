@@ -33,6 +33,7 @@ const Comites = lazy(() => import('../pages/organizacion/Comites'));            
 // Módulo: Académico
 const AcademicoIndex = lazy(() => import('../pages/academico/index'));
 const PlanEstudios = lazy(() => import('../pages/academico/PlanEstudios'));
+const Ambientes = lazy(() => import('../pages/academico/Ambientes'));
 const Titulacion = lazy(() => import('../pages/academico/Titulacion'));
 
 // Módulo: Investigación
@@ -102,7 +103,7 @@ export default function AppRouter() {
               <Route path="objetivos" element={<Objetivos />} />
               <Route path="perfiles" element={<Perfiles />} />
               <Route path="malla-curricular" element={<PlanEstudios />} />
-              <Route path="laboratorios" element={<EnConstruccion titulo="Laboratorios" />} />
+              <Route path="ambientes" element={<Ambientes />} />
               <Route path="responsabilidad-social" element={<EnConstruccion titulo="Responsabilidad **Social**" />} />
               <Route path="convenios" element={<Convenios />} />
               <Route path="movilidad" element={<Movilidad />} />

@@ -74,7 +74,14 @@ export const NAV_LINKS: NavSection[] = [
       {
         label: 'Recursos',
         items: [
-          { name: 'Laboratorios', path: '/academico/laboratorios' },
+          {
+            name: 'Ambientes',
+            path: '/academico/ambientes',
+            navAs: [
+              { name: 'Auditorios', path: '/academico/ambientes#auditorios' },
+              { name: 'Laboratorio', path: '/academico/ambientes#laboratorio' },
+            ],
+          },
           { name: 'Bienestar', path: '#', external: true },
         ],
       },
