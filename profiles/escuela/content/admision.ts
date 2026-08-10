@@ -15,22 +15,34 @@ export interface InfoUtilItem {
 
 export const modalidadesAdmision: ModalidadAdmision[] = [
   {
-    titulo: 'Modalidad de ingreso 1',
-    dirigidoA: 'A quién está dirigida esta modalidad.',
-    vacantes: 'Aprox. 00 vacantes',
-    descripcion: 'Descripción breve de la primera modalidad de ingreso.',
+    titulo: 'Examen Ordinario',
+    dirigidoA: 'Egresados y egresadas de educación secundaria.',
+    vacantes: '11 vacantes',
+    descripcion: 'Examen general de admisión a la Universidad Nacional de Trujillo. Proceso ordinario de ingreso para el periodo 2027-I.',
   },
   {
-    titulo: 'Modalidad de ingreso 2',
-    dirigidoA: 'A quién está dirigida esta modalidad.',
-    vacantes: 'Aprox. 00 vacantes',
-    descripcion: 'Descripción breve de la segunda modalidad de ingreso.',
+    titulo: 'CEPUNT-I',
+    dirigidoA: 'Postulantes que aprueban el ciclo del Centro Preuniversitario de la UNT (Ciclo I).',
+    vacantes: '8 vacantes',
+    descripcion: 'Ingreso a través del Centro Preuniversitario de la Universidad Nacional de Trujillo para el periodo 2027-I.',
   },
   {
-    titulo: 'Modalidad de ingreso 3',
-    dirigidoA: 'A quién está dirigida esta modalidad.',
-    vacantes: 'Aprox. 00 vacantes',
-    descripcion: 'Descripción breve de la tercera modalidad de ingreso.',
+    titulo: 'Personas con Discapacidad',
+    dirigidoA: 'Postulantes con discapacidad que cumplen los requisitos establecidos por la Ley N.º 29973.',
+    vacantes: '1 vacante',
+    descripcion: 'Modalidad de inclusión para personas con discapacidad, conforme a la normativa de admisión vigente para el periodo 2027-I.',
+  },
+  {
+    titulo: 'Quinto de Secundaria',
+    dirigidoA: 'Estudiantes que cursan el quinto año de educación secundaria.',
+    vacantes: '3 vacantes',
+    descripcion: 'Examen de admisión dirigido a estudiantes de quinto de secundaria para el ingreso anticipado en el periodo 2027-I.',
+  },
+  {
+    titulo: 'Premios de Excelencia',
+    dirigidoA: 'Estudiantes egresados de educación secundaria con primeros o segundos puestos.',
+    vacantes: '2 vacantes',
+    descripcion: 'Ingreso para egresados destacados de educación secundaria, según los méritos académicos establecidos en la normativa para el periodo 2027-I.',
   },
 ];
 
