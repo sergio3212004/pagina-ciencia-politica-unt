@@ -51,8 +51,14 @@ export const infoUtilAdmision: InfoUtilItem[] = [
   { titulo: 'Fechas', detalle: 'Periodos o meses en que se realizan los exámenes de admisión.' },
 ];
 
-// Botón inferior: portal oficial de admisión de la universidad.
-export const portalAdmision = {
-  label: 'Portal de Admisión',
-  url: '#',
-};
+// Accesos directos a los portales oficiales relacionados con la admisión.
+export const portalesAdmision = [
+  {
+    label: 'Admisión UNT',
+    url: 'https://www.admisionunt.info/',
+  },
+  {
+    label: 'CEPUNT',
+    url: 'https://cepunt.edu.pe/',
+  },
+];

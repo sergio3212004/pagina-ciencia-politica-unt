@@ -213,12 +213,13 @@ export const ADMISION_GROUPS: NavGroup[] = [
     ],
   },
   {
-    label: 'Estadísticas (últimos 5 años)',
+    label: 'Estadísticas',
     items: [
-      { name: 'Ingresantes', path: '#', external: true },
-      { name: 'Matriculados', path: '#', external: true },
-      { name: 'Graduados', path: '#', external: true },
-      { name: 'Titulados', path: '#', external: true },
+      {
+        name: 'Estadísticas de admisión',
+        path: 'https://www.admisionunt.info/estadistica',
+        external: true,
+      },
     ],
   },
   {

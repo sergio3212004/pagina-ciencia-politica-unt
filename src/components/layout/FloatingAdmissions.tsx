@@ -4,7 +4,7 @@ import { GraduationCap, Award, Info, ChevronRight, ExternalLink, BookOpen, Star 
 import useHeaderHeight from '../../hooks/useHeaderHeight';
 import { ADMISION_GROUPS } from '@/navigation';
 import { site } from '@/profile';
-import { modalidadesAdmision, infoUtilAdmision, portalAdmision } from '@profile/content/admision';
+import { modalidadesAdmision, infoUtilAdmision, portalesAdmision } from '@profile/content/admision';
 
 // Íconos rotados por modalidad (decorativos; el contenido viene del perfil).
 const MODALIDAD_ICONOS = [BookOpen, Star, Award];
@@ -135,14 +135,24 @@ export default function FloatingAdmissions() {
         </div>
 
         <div className="mt-4 pt-4 border-t border-white/20 shrink-0">
-          <a
-            href={portalAdmision.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full bg-white text-primary font-bold py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors shadow-md text-base"
-          >
-            {portalAdmision.label} <ExternalLink className="w-4 h-4" />
-          </a>
+          <p className="mb-2 text-[11px] font-black uppercase tracking-wider text-gold">
+            Portales oficiales
+          </p>
+          <div className="grid grid-cols-2 gap-2">
+            {portalesAdmision.map((portal) => (
+              <a
+                key={portal.url}
+                href={portal.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="w-full bg-white text-primary font-bold py-3 px-2 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors shadow-md text-sm md:text-base text-center"
+              >
+                {portal.label} <ExternalLink className="w-4 h-4 shrink-0" />
+                <span className="sr-only"> (abre en pestaña nueva)</span>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 

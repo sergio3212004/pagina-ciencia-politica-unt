@@ -14,4 +14,4 @@ export interface InfoUtilItem {
 
 export const modalidadesAdmision: ModalidadAdmision[] = [];
 export const infoUtilAdmision: InfoUtilItem[] = [];
-export const portalAdmision = { label: '[Portal de Admisión]', url: 'https://' };
+export const portalesAdmision = [{ label: '[Portal de Admisión]', url: 'https://' }];
