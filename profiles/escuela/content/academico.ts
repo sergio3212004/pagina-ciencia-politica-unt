@@ -568,11 +568,82 @@ export const tramites = [
   },
 ];
 
-// Se conserva la estructura requerida por la sección de movilidad. Agrega aquí
-// los convenios reales cuando la Escuela disponga de información confirmada.
+// Oportunidades de movilidad académica para Ciencia Política y Gobernabilidad
+// extraídas de los convenios específicos y generales vigentes de la UNT.
 export const movilidad: Array<{
   institucion: string;
   tipo: string;
   descripcion: string;
   modalidad: string;
-}> = [];
+}> = [
+  {
+    institucion: "Universidad Nacional Toribio Rodríguez de Mendoza de Amazonas",
+    tipo: "Nacional",
+    descripcion:
+      "Convenio específico de movilidad, intercambio y pasantía de docentes y estudiantes de pregrado.",
+    modalidad: "Semestre Académico / Pasantía",
+  },
+  {
+    institucion: "Universidad Ricardo Palma",
+    tipo: "Nacional",
+    descripcion:
+      "Convenio específico de intercambio de estudiantes de pregrado con reconocimiento de créditos.",
+    modalidad: "Semestre Académico",
+  },
+  {
+    institucion: "Red Peruana de Universidades (RPU)",
+    tipo: "Red Nacional",
+    descripcion:
+      "Programa de movilidad estudiantil que permite cursar asignaturas en universidades miembros de la red en todo el país (PUCP, UNSA, UNMSM, entre otras).",
+    modalidad: "Intercambio Estudiantil RPU",
+  },
+  {
+    institucion: "Universidad de Granada (España)",
+    tipo: "Internacional",
+    descripcion:
+      "Convenio de colaboración y movilidad estudiantil (ERASMUS+). Cuenta con Facultad de Ciencias Políticas y Sociología.",
+    modalidad: "Programa ERASMUS+ / Intercambio",
+  },
+  {
+    institucion: "Universidad Complutense de Madrid (España)",
+    tipo: "Internacional",
+    descripcion:
+      "Convenio de cooperación académica, científica y cultural con oferta de asignaturas en Ciencia Política y de la Administración.",
+    modalidad: "Intercambio Académico",
+  },
+  {
+    institucion: "Universitat de València (España)",
+    tipo: "Internacional",
+    descripcion:
+      "Convenio de cooperación académica y cultural para estancias de estudio y formación especializada.",
+    modalidad: "Estancia / Semestre Académico",
+  },
+  {
+    institucion: "Universidad de Chile (Chile)",
+    tipo: "Internacional",
+    descripcion:
+      "Memorando de entendimiento para movilidad académica con la carrera de Ciencia Política en su Facultad de Gobierno.",
+    modalidad: "Intercambio Estudiantil",
+  },
+  {
+    institucion: "Universidad Autónoma Metropolitana - UAM (México)",
+    tipo: "Internacional",
+    descripcion:
+      "Convenio específico de cooperación para la movilidad del alumno en programas afines a Ciencia Política.",
+    modalidad: "Movilidad Estudiantil",
+  },
+  {
+    institucion: "Universidad Nacional Autónoma de México - UNAM (México)",
+    tipo: "Internacional",
+    descripcion:
+      "Convenio general de colaboración que permite estancias, pasantías e intercambios académicos.",
+    modalidad: "Intercambio / Pasantía",
+  },
+  {
+    institucion: "Universidad de la República - Udelar (Uruguay)",
+    tipo: "Internacional",
+    descripcion:
+      "Convenio marco de cooperación con la Licenciatura en Ciencia Política en su Facultad de Ciencias Sociales.",
+    modalidad: "Movilidad Académica",
+  },
+];

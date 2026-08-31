@@ -31,21 +31,23 @@ export default function Footer() {
               <p className="text-gray-300 font-body text-sm leading-relaxed mb-6">
                 {site.tagline}
               </p>
-              {/* Social icons */}
+              {/* Social icons (solo redes con enlace válido configurado) */}
               <div className="flex items-center gap-3 flex-wrap">
-                {Object.entries(redesSociales).map(([red, url]) => (
-                  <a
-                    key={red}
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={socialLabels[red] || red}
-                    className="w-11 h-11 rounded-full bg-white/10 hover:bg-gold flex items-center justify-center transition-colors duration-200"
-                    aria-label={`Visitar ${socialLabels[red] || red}`}
-                  >
-                    {socialIcons[red] || <span className="text-xs font-bold uppercase">{red.charAt(0)}</span>}
-                  </a>
-                ))}
+                {Object.entries(redesSociales)
+                  .filter(([, url]) => url && url !== '#')
+                  .map(([red, url]) => (
+                    <a
+                      key={red}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={socialLabels[red] || red}
+                      className="w-11 h-11 rounded-full bg-white/10 hover:bg-gold flex items-center justify-center transition-colors duration-200"
+                      aria-label={`Visitar ${socialLabels[red] || red}`}
+                    >
+                      {socialIcons[red] || <span className="text-xs font-bold uppercase">{red.charAt(0)}</span>}
+                    </a>
+                  ))}
               </div>
             </div>
 
@@ -88,12 +90,9 @@ export default function Footer() {
                 </li>
                 <li className="flex gap-3 text-sm items-start">
                   <Mail className="w-4 h-4 text-gold shrink-0 mt-0.5" />
-                  <div className="space-y-1">
+                  <div>
                     <a href={`mailto:${informacionContacto.correo}`} className="text-gray-300 hover:text-white transition-colors">
                       {informacionContacto.correo}
-                    </a>
-                    <a href={`mailto:${informacionContacto.correoComiteCalidad}`} className="text-gray-300 hover:text-white transition-colors block">
-                      {informacionContacto.correoComiteCalidad}
                     </a>
                   </div>
                 </li>

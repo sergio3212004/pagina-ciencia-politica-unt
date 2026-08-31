@@ -3,9 +3,13 @@ import { redesSociales } from '@profile/content/contacto';
 import { socialIcons, socialLabels } from '../icons/social';
 
 export default function RedesSociales() {
+  const activeSocials = Object.entries(redesSociales).filter(([, url]) => url && url !== '#');
+
+  if (activeSocials.length === 0) return null;
+
   return (
     <div className="flex gap-4 mt-6">
-      {Object.entries(redesSociales).map(([red, url]) => (
+      {activeSocials.map(([red, url]) => (
         <a
           key={red}
           href={url}

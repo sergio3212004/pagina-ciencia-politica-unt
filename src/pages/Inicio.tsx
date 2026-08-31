@@ -400,48 +400,63 @@ export default function Inicio() {
           ══════════════════════════════════════════ */}
       <section className="py-16 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4 md:px-8">
-          <SectionTitle
-            title="Nuestros **Ambientes**"
-            subtitle="Espacios diseñados para tu desarrollo práctico y tecnológico."
-            center
-          />
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+            <SectionTitle
+              title="Nuestros **Ambientes**"
+              subtitle="Espacios diseñados para tu desarrollo práctico, académico y tecnológico."
+            />
+            <Link
+              to="/academico/ambientes"
+              className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-gold transition-colors whitespace-nowrap shrink-0"
+            >
+              Ver todos <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-            
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {ambientes.map((amb, idx) => (
               <motion.div
                 key={amb.titulo}
-                initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="group relative rounded-3xl overflow-hidden bg-primary h-[380px] md:h-[450px] flex items-end shadow-xl"
+                whileHover={{ y: -6 }}
+                className="h-full"
               >
-                <div className="absolute inset-0">
-                  <img
-                    src={amb.imagen}
-                    alt={amb.alt}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 opacity-60"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/80 to-transparent" />
-                  <div className="absolute inset-0 bg-primary/25" />
-                </div>
-                <div className="relative z-10 p-8 md:p-10 w-full transform group-hover:-translate-y-2 transition-transform duration-500">
-                  <span className="inline-block px-3.5 py-1.5 bg-gold text-primary text-[10px] font-black tracking-widest uppercase rounded-md mb-4 shadow-lg">
-                    {amb.badge}
-                  </span>
-                  <h3 className="text-2xl md:text-4xl font-display font-black text-white mb-3 leading-tight">
-                    {amb.titulo}
-                  </h3>
-                  <div className="w-24 h-1 bg-gold mb-4 origin-left scale-x-50 transition-transform duration-500 group-hover:scale-x-100"></div>
-                  <p className="text-white/80 text-sm md:text-base leading-relaxed max-w-lg">
-                    {amb.descripcion}
-                  </p>
-                </div>
+                <Link
+                  to={amb.link || '/academico/ambientes'}
+                  className="group relative rounded-3xl overflow-hidden bg-primary h-[380px] md:h-[430px] flex items-end shadow-xl block"
+                >
+                  <div className="absolute inset-0">
+                    <img
+                      src={amb.imagen}
+                      alt={amb.alt}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 opacity-60"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/80 to-transparent" />
+                    <div className="absolute inset-0 bg-primary/25" />
+                  </div>
+                  <div className="relative z-10 p-7 md:p-8 w-full transform group-hover:-translate-y-2 transition-transform duration-500">
+                    <span className="inline-block px-3.5 py-1.5 bg-gold text-primary text-[10px] font-black tracking-widest uppercase rounded-md mb-3 shadow-lg">
+                      {amb.badge}
+                    </span>
+                    <h3 className="text-xl md:text-2xl font-display font-black text-white mb-2 leading-tight group-hover:text-gold transition-colors">
+                      {amb.titulo}
+                    </h3>
+                    <div className="w-16 h-1 bg-gold mb-3 origin-left scale-x-50 transition-transform duration-500 group-hover:scale-x-100"></div>
+                    <p className="text-white/80 text-xs md:text-sm leading-relaxed line-clamp-3 mb-3">
+                      {amb.descripcion}
+                    </p>
+                    <div className="inline-flex items-center gap-2 text-xs font-bold text-gold group-hover:text-white transition-colors">
+                      <span>Conocer ambiente</span>
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </div>
+                </Link>
               </motion.div>
             ))}
-
           </div>
         </div>
       </section>

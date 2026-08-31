@@ -85,8 +85,8 @@ export const site: SiteConfig = {
   },
 
   enlacesInstitucionales: [
-    { label: "Enlace institucional 1", url: "#" },
-    { label: "Enlace institucional 2", url: "#" },
-    { label: "Enlace institucional 3", url: "#" },
+    { label: "Portal Institucional UNT", url: "https://unitru.edu.pe/" },
+    { label: "Aula Virtual", url: "https://aulavirtual2.unitru.edu.pe/" },
+    { label: "Sistema SUV", url: "https://suv.unitru.edu.pe/" },
   ],
 };

@@ -82,7 +82,7 @@ export const NAV_LINKS: NavSection[] = [
               { name: 'Laboratorio', path: '/academico/ambientes#laboratorio' },
             ],
           },
-          { name: 'Bienestar', path: '#', external: true },
+          { name: 'Bienestar', path: 'https://www.facebook.com/profile.php?id=100063802435468#', external: true },
         ],
       },
       {
@@ -209,7 +209,11 @@ export const ADMISION_GROUPS: NavGroup[] = [
   {
     label: 'Postulantes',
     items: [
-      { name: 'Guía del postulante', path: '/admision/guia' },
+      {
+        name: 'Guía del postulante',
+        path: 'https://www.admisionunt.info/carreraDetalle/39',
+        external: true,
+      },
     ],
   },
   {

@@ -1,7 +1,6 @@
 export const informacionContacto = {
   direccion: "Av. Juan Pablo II S/N, Urbanización San Andrés, Ciudad Universitaria, Trujillo, La Libertad, Perú.",
   correo: "politica@unitru.edu.pe",
-  correoComiteCalidad: "mdiazc@unitru.edu.pe",
   horarioAtencion: "Lunes a viernes, de 7:00 a. m. a 2:45 p. m. (horario institucional de la Universidad Nacional de Trujillo).",
   // Mapa de ubicación: pega aquí la URL "embed" de Google Maps de tu programa
   // (Compartir → Insertar un mapa → copia el atributo src del iframe).
@@ -9,25 +8,8 @@ export const informacionContacto = {
   mapaTitulo: "Facultad de Derecho y Ciencias Políticas - UNT"
 };
 
-// Correos de las autoridades y personal de la Escuela, mostrados en la página
-// de Contacto. Cargo + nombre de la persona y su correo institucional.
-export const correoEquipo: Array<{ cargo: string; nombre: string; correo: string }> = [
-  {
-    cargo: "Directora de la Escuela",
-    nombre: "Dra. Ena Carnero Arroyo",
-    correo: "ecarnero@unitru.edu.pe",
-  },
-  {
-    cargo: "Presidenta del Comité de Calidad",
-    nombre: "Dra. Melissa Díaz Cabrera",
-    correo: "mdiazc@unitru.edu.pe",
-  },
-  {
-    cargo: "Secretaria Administrativa de la Escuela",
-    nombre: "Sra. Mariel Gutiérrez González",
-    correo: "mgutierrez@unitru.edu.pe",
-  },
-];
+// En caso de requerir correos específicos adicionales por área/equipo en el futuro
+export const correoEquipo: Array<{ cargo: string; nombre: string; correo: string }> = [];
 
 // Libro de Reclamaciones oficial. Reemplaza por la URL de tu institución.
 export const libroReclamacionesUrl = '#';

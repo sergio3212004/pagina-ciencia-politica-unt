@@ -16,5 +16,6 @@ export interface Ambiente {
   descripcion: string;
   imagen: string;
   alt: string;
+  link?: string;
 }
 export const ambientes: Ambiente[] = [];
