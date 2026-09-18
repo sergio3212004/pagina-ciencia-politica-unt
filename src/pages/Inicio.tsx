@@ -8,6 +8,7 @@ import { GraduationCap, ArrowRight, Calendar, ShieldCheck } from 'lucide-react';
 import { site, branding } from '@/profile';
 import { noticias } from '@profile/content/noticias';
 import { accesosRapidos, ambientes } from '@profile/content/home';
+import NoticiasVacio from '../components/noticias/NoticiasVacio';
 import fotoDecano from '@profile/assets/autoridades/decano-segundo-rodriguez-alban.webp';
 import useHeaderHeight from '../hooks/useHeaderHeight';
 
@@ -295,7 +296,8 @@ export default function Inicio() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+          {noticias.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
             {noticias.map((noticia, idx) => (
               <motion.div
                 key={noticia.id}
@@ -342,7 +344,10 @@ export default function Inicio() {
                 </Link>
               </motion.div>
             ))}
-          </div>
+            </div>
+          ) : (
+            <NoticiasVacio />
+          )}
         </div>
       </section>
 

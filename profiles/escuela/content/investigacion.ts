@@ -62,6 +62,14 @@ export const revistas = [
   },
 ];
 
+export const convocatoriaRevista = {
+  nombre: "Bases de la convocatoria para publicación",
+  edicion: "Revista Diálogos Políticos · Vol. 01, N.º 1",
+  descripcion:
+    "Consulta las bases oficiales y presenta tu artículo científico para la primera edición de la revista Diálogos Políticos de la Escuela Profesional de Ciencia Política y Gobernabilidad.",
+  archivo: "Bases de Convocatoria Revista DIALOGOS POLITICOS - UNT-V2.pdf",
+};
+
 export interface Convenio {
   institucion: string;
   tipo: string;

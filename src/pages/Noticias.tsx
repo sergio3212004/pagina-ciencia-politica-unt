@@ -6,6 +6,7 @@ import PageHero from '../components/layout/PageHero';
 import { Card } from '../components/ui/Card';
 import { noticias } from '@profile/content/noticias';
 import { site } from '@/profile';
+import NoticiasVacio from '../components/noticias/NoticiasVacio';
 import { Newspaper, Calendar, ArrowRight } from 'lucide-react';
 
 export default function Noticias() {
@@ -20,6 +21,7 @@ export default function Noticias() {
 
       <section className="py-16 md:py-20 bg-gray-50">
         <div className="container mx-auto px-4 md:px-8">
+          {noticias.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
             {noticias.map((noticia, idx) => (
               <motion.div
@@ -68,6 +70,9 @@ export default function Noticias() {
               </motion.div>
             ))}
           </div>
+          ) : (
+            <NoticiasVacio />
+          )}
         </div>
       </section>
     </PageWrapper>
