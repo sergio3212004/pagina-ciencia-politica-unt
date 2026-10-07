@@ -171,8 +171,8 @@ export default function Navbar() {
                   // abriendo el menú vía focus-within, intacto.
                   onClick={(e) => e.currentTarget.blur()}
                   className={({ isActive }) => clsx(
-                  'font-body font-medium text-[16px] transition-colors flex items-center px-7 py-5 md:py-6',
-                  isActive ? 'bg-gold text-white' : 'text-white hover:bg-white/10'
+                    'font-body font-medium text-[15px] xl:text-[16px] transition-colors flex items-center px-4 xl:px-6 2xl:px-7 py-5 md:py-6',
+                    isActive ? 'bg-gold text-white' : 'text-white hover:bg-white/10'
                   )}
                 >
                   {link.name}

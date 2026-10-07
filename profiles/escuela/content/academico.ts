@@ -23,24 +23,19 @@ export const objetivosInstitucionales = [
 
 export const objetivosAcademicos = [
   {
-    codigo: "O.E.1",
+    codigo: "OA1",
     descripcion:
-      "Gestiona políticas públicas para la solución de problemas en la administración pública peruana, desempeñándose con eficiencia y calidad.",
+      "El futuro profesional debe tener conocimientos básicos en habilidades sociales a fin de identificar los fenómenos donde intervienen los actores políticos, sociales, económicos, con nociones en ética y moral a fin de coadyuvar a su desenvolvimiento en la gestión pública.",
   },
   {
-    codigo: "O.E.2",
+    codigo: "OA2",
     descripcion:
-      "Asesora y presta servicios profesionales a organizaciones públicas, privadas e internacionales para la toma de decisiones, respetando la normatividad vigente.",
+      "El futuro profesional debe tener nociones de sus deberes y derechos como ciudadano para participar en los procesos de democratización del Estado Constitucional de Derecho e intervenir en los fenómenos políticos, sociales, económicos que demande su profesión, identificar problemas ligados al ámbito de la profesión coadyuvando al desarrollo social.",
   },
   {
-    codigo: "O.E.3",
+    codigo: "OA3",
     descripcion:
-      "Investiga y difunde los hallazgos de su investigación como aporte al campo científico de la Ciencia Política y la Gobernabilidad.",
-  },
-  {
-    codigo: "O.E.4",
-    descripcion:
-      "Resuelve conflictos políticos, sociales y ambientales a través de mecanismos y estrategias con enfoque multi, inter y transdisciplinario, y comportamiento ético.",
+      "El futuro profesional debe tener nociones en manejo y resolución de conflictos empleando estrategias para persuadir una posición frente al conflicto. Asimismo, el futuro profesional tendrá capacidad para asesorar y obtener una eficaz toma de decisiones.",
   },
 ];
 

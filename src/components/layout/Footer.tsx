@@ -64,6 +64,7 @@ export default function Footer() {
                   { label: 'Perfil del Egresado', to: '/academico/perfiles#egreso' },
                   { label: 'Líneas de Investigación', to: '/investigacion/lineas' },
                   { label: 'Plana Docente', to: '/organizacion/docentes' },
+                  { label: 'TUPA - Procedimientos Administrativos', to: '/tupa' },
                 ].map(({ label, to }) => (
                   <li key={to}>
                     <Link

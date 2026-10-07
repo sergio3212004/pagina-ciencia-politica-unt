@@ -10,6 +10,7 @@ const sectionLabels: Record<string, string> = {
   '/organizacion': 'Organización',
   '/academico': 'Académico',
   '/investigacion': 'Investigación',
+  '/tupa': 'TUPA',
   '/contacto': 'Contacto',
 };
 

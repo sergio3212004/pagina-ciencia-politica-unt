@@ -54,6 +54,11 @@ const GuiaPostulante = lazy(() => import('../pages/admision/GuiaPostulante'));
 const Resoluciones = lazy(() => import('../pages/admision/Resoluciones'));
 const GestionFormacionPregrado = lazy(() => import('../pages/admision/GestionFormacionPregrado'));
 
+// Módulo: TUPA (Texto Único de Procedimientos Administrativos)
+const TupaIndex = lazy(() => import('../pages/tupa/index'));
+const Procedimientos = lazy(() => import('../pages/tupa/Procedimientos'));
+const DocumentoOficial = lazy(() => import('../pages/tupa/DocumentoOficial'));
+
 // Fallback mientras llega el chunk de la ruta. Reserva alto para evitar saltos.
 function RouteFallback() {
   return (
@@ -118,6 +123,13 @@ export default function AppRouter() {
               <Route path="publicaciones" element={<Publicaciones />} />
               <Route path="revistas" element={<Revistas />} />
               <Route path="proyectos" element={<ProyectosGrupo />} />
+            </Route>
+
+            {/* ── TUPA ── */}
+            <Route path="/tupa" element={<TupaIndex />}>
+              <Route index element={<Procedimientos />} />
+              <Route path="procedimientos" element={<Procedimientos />} />
+              <Route path="documento-oficial" element={<DocumentoOficial />} />
             </Route>
 
             {/* ── Admisión (panel lateral) ── */}

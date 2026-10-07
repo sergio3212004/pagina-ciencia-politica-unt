@@ -1,4 +1,4 @@
-import type { NavSection, NavGroup } from '@/profile-types';
+import type { NavSection, NavGroup } from "@/profile-types";
 
 /**
  * Datos de navegación de la escuela (Configuración del perfil).
@@ -17,21 +17,21 @@ import type { NavSection, NavGroup } from '@/profile-types';
  * actualizar también el router.
  */
 export const NAV_LINKS: NavSection[] = [
-  { name: 'Inicio', path: '/' },
+  { name: "Inicio", path: "/" },
   {
-    name: 'Nosotros',
-    path: '/nosotros',
+    name: "Nosotros",
+    path: "/nosotros",
     groups: [
       {
-        label: 'Identidad',
+        label: "Identidad",
         items: [
-          { name: 'Historia', path: '/nosotros/historia' },
+          { name: "Historia", path: "/nosotros/historia" },
           {
-            name: 'Misión y Visión',
-            path: '/nosotros/mision-vision',
+            name: "Misión y Visión",
+            path: "/nosotros/mision-vision",
             navAs: [
-              { name: 'Misión', path: '/nosotros/mision-vision#mision' },
-              { name: 'Visión', path: '/nosotros/mision-vision#vision' },
+              { name: "Misión", path: "/nosotros/mision-vision#mision" },
+              { name: "Visión", path: "/nosotros/mision-vision#vision" },
             ],
           },
         ],
@@ -39,69 +39,88 @@ export const NAV_LINKS: NavSection[] = [
     ],
   },
   {
-    name: 'Académico',
-    path: '/academico',
+    name: "Académico",
+    path: "/academico",
     groups: [
       // "Formación" (Objetivos + Perfiles) movida desde Nosotros y puesta ARRIBA:
       // sigue la cadena de acreditación objetivos → perfil → malla.
       {
-        label: 'Formación',
+        label: "Formación",
         items: [
           {
-            name: 'Objetivos',
-            path: '/academico/objetivos',
+            name: "Objetivos",
+            path: "/academico/objetivos",
             navAs: [
-              { name: 'Objetivos institucionales', path: '/academico/objetivos#institucionales' },
-              { name: 'Objetivos académicos', path: '/academico/objetivos#academicos' },
+              {
+                name: "Objetivos académicos",
+                path: "/academico/objetivos#academicos",
+              },
+              {
+                name: "Objetivos educacionales",
+                path: "/academico/objetivos#educacionales",
+              },
             ],
           },
           {
-            name: 'Perfiles',
-            path: '/academico/perfiles',
+            name: "Perfiles",
+            path: "/academico/perfiles",
             navAs: [
-              { name: 'Perfil de ingreso', path: '/academico/perfiles#ingreso' },
-              { name: 'Perfil de egreso', path: '/academico/perfiles#egreso' },
+              {
+                name: "Perfil de ingreso",
+                path: "/academico/perfiles#ingreso",
+              },
+              { name: "Perfil de egreso", path: "/academico/perfiles#egreso" },
             ],
           },
         ],
       },
       {
-        label: 'Plan de estudios',
+        label: "Plan de estudios",
         items: [
-          { name: 'Malla curricular', path: '/academico/malla-curricular' },
+          { name: "Malla curricular", path: "/academico/malla-curricular" },
         ],
       },
       {
-        label: 'Recursos',
+        label: "Recursos",
         items: [
           {
-            name: 'Ambientes',
-            path: '/academico/ambientes',
+            name: "Ambientes",
+            path: "/academico/ambientes",
             navAs: [
-              { name: 'Auditorios', path: '/academico/ambientes#auditorios' },
-              { name: 'Laboratorio', path: '/academico/ambientes#laboratorio' },
+              { name: "Auditorios", path: "/academico/ambientes#auditorios" },
+              { name: "Laboratorio", path: "/academico/ambientes#laboratorio" },
             ],
           },
-          { name: 'Bienestar', path: 'https://www.facebook.com/profile.php?id=100063802435468#', external: true },
+          {
+            name: "Bienestar",
+            path: "https://www.facebook.com/profile.php?id=100063802435468#",
+            external: true,
+          },
         ],
       },
       {
-        label: 'Vinculación',
-        items: [
-          { name: 'Responsabilidad social', path: '/academico/responsabilidad-social' },
-          { name: 'Convenios', path: '/academico/convenios' },
-          { name: 'Movilidad', path: '/academico/movilidad' },
-        ],
-      },
-      {
-        label: 'Egresados',
+        label: "Vinculación",
         items: [
           {
-            name: 'Grados, títulos y colación',
-            path: '/academico/titulacion',
+            name: "Responsabilidad social",
+            path: "/academico/responsabilidad-social",
+          },
+          { name: "Convenios", path: "/academico/convenios" },
+          { name: "Movilidad", path: "/academico/movilidad" },
+        ],
+      },
+      {
+        label: "Egresados",
+        items: [
+          {
+            name: "Grados, títulos y colación",
+            path: "/academico/titulacion",
             navAs: [
-              { name: 'Grados y títulos', path: '/academico/titulacion' },
-              { name: 'Carpeta para colaciones', path: '/academico/titulacion#colacion' },
+              { name: "Grados y títulos", path: "/academico/titulacion" },
+              {
+                name: "Carpeta para colaciones",
+                path: "/academico/titulacion#colacion",
+              },
             ],
           },
         ],
@@ -109,96 +128,151 @@ export const NAV_LINKS: NavSection[] = [
     ],
   },
   {
-    name: 'Organización',
-    path: '/organizacion',
+    name: "Organización",
+    path: "/organizacion",
     groups: [
       {
-        label: 'Autoridades',
+        label: "Autoridades",
         items: [
           {
-            name: 'Dirección',
-            path: '/organizacion/direccion',
+            name: "Dirección",
+            path: "/organizacion/direccion",
             navAs: [
-              { name: 'Director de escuela', path: '/organizacion/direccion#escuela' },
+              {
+                name: "Director de escuela",
+                path: "/organizacion/direccion#escuela",
+              },
             ],
           },
         ],
       },
       {
-        label: 'Órganos de Gobierno',
+        label: "Órganos de Gobierno",
         items: [
           {
-            name: 'Órganos de Gobierno',
-            path: '/organizacion/organos-gobierno',
+            name: "Órganos de Gobierno",
+            path: "/organizacion/organos-gobierno",
             navAs: [
-              { name: 'Consejo de Facultad', path: '/organizacion/organos-gobierno#consejo-facultad' },
-              { name: 'Consejeros', path: '/organizacion/organos-gobierno#consejeros' },
-              { name: 'Centro Federado', path: '/organizacion/organos-gobierno#representantes' },
+              {
+                name: "Consejo de Facultad",
+                path: "/organizacion/organos-gobierno#consejo-facultad",
+              },
+              {
+                name: "Consejeros",
+                path: "/organizacion/organos-gobierno#consejeros",
+              },
+              {
+                name: "Centro Federado",
+                path: "/organizacion/organos-gobierno#representantes",
+              },
             ],
           },
         ],
       },
       {
-        label: 'Personal',
+        label: "Personal",
         items: [
-          { name: 'Docentes', path: '/organizacion/docentes' },
-          { name: 'Administrativos', path: '/organizacion/administrativos' },
+          { name: "Docentes", path: "/organizacion/docentes" },
+          { name: "Administrativos", path: "/organizacion/administrativos" },
         ],
       },
       {
-        label: 'Comités',
+        label: "Comités",
         items: [
           {
-            name: 'Comités',
-            path: '/organizacion/comites',
+            name: "Comités",
+            path: "/organizacion/comites",
             navAs: [
-              { name: 'Comité de Calidad', path: '/organizacion/comites#calidad' },
-              { name: 'Comité Técnico de Currículo', path: '/organizacion/comites#curriculo' },
-              { name: 'Comité de Tutoría y Consejería', path: '/organizacion/comites#tutoria' },
-              { name: 'Comité de Gestión de Competencias', path: '/organizacion/comites#competencias' },
-              { name: 'Comité de Seguimiento al Egresado', path: '/organizacion/comites#egresado' },
-              { name: 'Comité de Investigación', path: '/organizacion/comites#investigacion' },
-              { name: 'Comité de Responsabilidad Social', path: '/organizacion/comites#responsabilidad' },
+              {
+                name: "Comité de Calidad",
+                path: "/organizacion/comites#calidad",
+              },
+              {
+                name: "Comité Técnico de Currículo",
+                path: "/organizacion/comites#curriculo",
+              },
+              {
+                name: "Comité de Tutoría y Consejería",
+                path: "/organizacion/comites#tutoria",
+              },
+              {
+                name: "Comité de Gestión de Competencias",
+                path: "/organizacion/comites#competencias",
+              },
+              {
+                name: "Comité de Seguimiento al Egresado",
+                path: "/organizacion/comites#egresado",
+              },
+              {
+                name: "Comité de Investigación",
+                path: "/organizacion/comites#investigacion",
+              },
+              {
+                name: "Comité de Responsabilidad Social",
+                path: "/organizacion/comites#responsabilidad",
+              },
             ],
           },
         ],
       },
       {
-        label: 'Estructura',
+        label: "Estructura",
         items: [
-          { name: 'Estructura organizacional', path: '/organizacion/estructura' },
+          {
+            name: "Estructura organizacional",
+            path: "/organizacion/estructura",
+          },
         ],
       },
     ],
   },
   {
-    name: 'Investigación',
-    path: '/investigacion',
+    name: "Investigación",
+    path: "/investigacion",
     groups: [
       {
-        label: 'Producción',
+        label: "Producción",
         items: [
-          { name: 'Líneas de investigación', path: '/investigacion/lineas' },
-          { name: 'Publicaciones', path: '/investigacion/publicaciones' },
-          { name: 'Revistas', path: '/investigacion/revistas' },
+          { name: "Líneas de investigación", path: "/investigacion/lineas" },
+          { name: "Publicaciones", path: "/investigacion/publicaciones" },
+          { name: "Revistas", path: "/investigacion/revistas" },
         ],
       },
       {
-        label: 'Proyectos',
+        label: "Proyectos",
         items: [
           {
-            name: 'Proyectos',
-            path: '/investigacion/proyectos',
+            name: "Proyectos",
+            path: "/investigacion/proyectos",
             navAs: [
-              { name: 'Proyectos de investigación', path: '/investigacion/proyectos#investigacion' },
-              { name: 'Proyectos y tesis', path: '/investigacion/proyectos#tesis' },
+              {
+                name: "Proyectos de investigación",
+                path: "/investigacion/proyectos#investigacion",
+              },
+              {
+                name: "Proyectos y tesis",
+                path: "/investigacion/proyectos#tesis",
+              },
             ],
           },
         ],
       },
     ],
   },
-  { name: 'Contacto', path: '/contacto' },
+  {
+    name: "TUPA",
+    path: "/tupa",
+    groups: [
+      {
+        label: "TUPA UNT",
+        items: [
+          { name: "Procedimientos Administrativos", path: "/tupa/procedimientos" },
+          { name: "Documento Oficial (PDF)", path: "/tupa/documento-oficial" },
+        ],
+      },
+    ],
+  },
+  { name: "Contacto", path: "/contacto" },
 ];
 
 /**
@@ -207,35 +281,38 @@ export const NAV_LINKS: NavSection[] = [
  */
 export const ADMISION_GROUPS: NavGroup[] = [
   {
-    label: 'Postulantes',
+    label: "Postulantes",
     items: [
       {
-        name: 'Guía del postulante',
-        path: 'https://www.admisionunt.info/carreraDetalle/39',
+        name: "Guía del postulante",
+        path: "https://www.admisionunt.info/carreraDetalle/39",
         external: true,
       },
     ],
   },
   {
-    label: 'Estadísticas',
+    label: "Estadísticas",
     items: [
       {
-        name: 'Estadísticas de admisión',
-        path: 'https://www.admisionunt.info/estadistica',
+        name: "Estadísticas de admisión",
+        path: "https://www.admisionunt.info/estadistica",
         external: true,
       },
     ],
   },
   {
-    label: 'Documentos',
+    label: "Documentos",
     items: [
-      { name: 'Resoluciones', path: '/admision/resoluciones' },
+      { name: "Resoluciones", path: "/admision/resoluciones" },
       {
-        name: 'Política de Gestión de Calidad',
-        path: 'https://drive.google.com/file/d/1frtwwoFOHq9FcjUr88d5axbL-abLF2Ik/view?usp=drive_link',
+        name: "Política de Gestión de Calidad",
+        path: "https://drive.google.com/file/d/1frtwwoFOHq9FcjUr88d5axbL-abLF2Ik/view?usp=drive_link",
         external: true,
       },
-      { name: 'Gestión de la Formación en Pregrado', path: '/admision/gestion-formacion-pregrado' },
+      {
+        name: "Gestión de la Formación en Pregrado",
+        path: "/admision/gestion-formacion-pregrado",
+      },
     ],
   },
 ];
