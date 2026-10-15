@@ -40,7 +40,7 @@ export default function AnnouncementBanner() {
                   transition={{ duration: 0.2 }}
                   className="flex items-center gap-2 min-w-0"
                 >
-                  <span className="text-sm font-medium truncate">
+                  <span className="text-sm font-medium truncate" title={aviso.texto}>
                     {aviso.texto}
                   </span>
                   {aviso.link && (
@@ -49,14 +49,14 @@ export default function AnnouncementBanner() {
                         href={aviso.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hidden sm:inline-flex items-center gap-0.5 text-primary font-extrabold text-sm underline underline-offset-2 shrink-0 hover:opacity-70 transition-opacity"
+                        className="inline-flex items-center gap-0.5 text-primary font-extrabold text-sm underline underline-offset-2 shrink-0 hover:opacity-70 transition-opacity"
                       >
                         Ver más <ChevronRight className="w-3.5 h-3.5" />
                       </a>
                     ) : (
                       <Link
                         to={aviso.link}
-                        className="hidden sm:inline-flex items-center gap-0.5 text-primary font-extrabold text-sm underline underline-offset-2 shrink-0 hover:opacity-70 transition-opacity"
+                        className="inline-flex items-center gap-0.5 text-primary font-extrabold text-sm underline underline-offset-2 shrink-0 hover:opacity-70 transition-opacity"
                       >
                         Ver más <ChevronRight className="w-3.5 h-3.5" />
                       </Link>

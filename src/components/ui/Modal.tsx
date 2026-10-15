@@ -6,9 +6,10 @@ interface ModalProps {
   onClose: () => void;
   title: React.ReactNode;
   children: React.ReactNode;
+  maxWidth?: string;
 }
 
-export function Modal({ isOpen, onClose, title, children }: ModalProps) {
+export function Modal({ isOpen, onClose, title, children, maxWidth = 'max-w-lg' }: ModalProps) {
   // Evitar scroll cuando el modal está abierto
   useEffect(() => {
     if (isOpen) {
@@ -38,7 +39,7 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
               initial={{ scale: 0.95, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              className="bg-white rounded-xl shadow-2xl w-full max-w-lg pointer-events-auto overflow-hidden flex flex-col max-h-[90dvh]"
+              className={`bg-white rounded-xl shadow-2xl w-full ${maxWidth} pointer-events-auto overflow-hidden flex flex-col max-h-[90dvh]`}
             >
               <div className="flex justify-between items-center p-5 border-b border-gray-100">
                 <h3 className="font-display font-bold text-xl text-primary">{title}</h3>

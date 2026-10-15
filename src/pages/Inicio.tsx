@@ -297,7 +297,7 @@ export default function Inicio() {
           </div>
 
           {noticias.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+            <div className={`grid grid-cols-1 ${noticias.length === 1 ? 'max-w-xl mx-auto' : 'md:grid-cols-2 lg:grid-cols-3'} gap-7`}>
             {noticias.map((noticia, idx) => (
               <motion.div
                 key={noticia.id}
@@ -312,12 +312,12 @@ export default function Inicio() {
                     {/* Franja superior de color por categoría */}
                     <div className="h-1.5 bg-primary w-full" />
                     {/* Imagen de la noticia */}
-                    <div className="h-48 w-full overflow-hidden shrink-0">
+                    <div className="h-52 w-full overflow-hidden shrink-0 bg-slate-100">
                       <img
                         src={noticia.imagen}
                         alt={noticia.titulo}
                         loading="lazy"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
                     <div className="p-6 flex flex-col flex-1">
